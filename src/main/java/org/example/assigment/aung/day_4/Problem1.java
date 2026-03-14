@@ -1,6 +1,11 @@
 package org.example.assigment.aung.day_4;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 84327f7f199cafb674366d2af7639c5b9ff25841
 import java.util.Scanner;
+
+
 public class Problem1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
