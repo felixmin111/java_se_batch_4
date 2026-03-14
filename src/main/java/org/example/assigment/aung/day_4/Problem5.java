@@ -1,6 +1,8 @@
+package org.example.assigment.aung.day_4;
+
 import java.util.Scanner;
 
-public class problem5 {
+public class Problem5 {
     public static void main(String[] args) {
         Double Effort = null;
         Double Time = null;
