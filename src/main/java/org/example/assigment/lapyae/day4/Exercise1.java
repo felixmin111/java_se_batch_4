@@ -1,4 +1,4 @@
 package org.example.assigment.lapyae.day4;
 
-public class exercise1 {
+public class Exercise1 {
 }
