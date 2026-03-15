@@ -1,5 +1,7 @@
 package org.example.Day4;
 
+import org.example.Day5.Person;
+
 import java.util.Scanner;
 
 public class Conduction {
