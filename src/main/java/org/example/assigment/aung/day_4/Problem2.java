@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class Problem2 {
     public static void main(String[] args) {
+        calculator();
+    }
+
+    public static void calculator(){
         System.out.println("""
         Choose a process
         1. Add
@@ -17,6 +21,11 @@ public class Problem2 {
         int num1 = sc.nextInt();
         System.out.println("Enter second number: ");
         int num2 = sc.nextInt();
+        process(num1, num2, choice);
+        sc.close();
+    }
+
+    public static void process(int num1, int num2,int choice) {
         if (choice == 1) {
             System.out.println(num1 + " + " + num2 + " = " + (num1 + num2));
         } else if (choice == 2) {
@@ -29,6 +38,5 @@ public class Problem2 {
         else {
             System.out.println("Invalid choice or invalid number");
         }
-        sc.close();
     }
 }
