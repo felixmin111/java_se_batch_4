@@ -12,6 +12,7 @@ public class Calculator {
         System.out.println("Enter Number 2: ");
         float N2 = sc.nextFloat();
 
+
         System.out.println("Choose Process");
         System.out.println("Process 1: ADD");
         System.out.println("Process 2: Substraction");
