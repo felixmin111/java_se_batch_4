@@ -23,7 +23,7 @@ public class Student {
 
     // getter and setter for safety
     public void setAge(int age) {
-        if (age > 0 && age <= 200) {
+        if (age > 0 && age <= 100) {
             this.age = age;
         }
         else {

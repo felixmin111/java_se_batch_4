@@ -9,7 +9,7 @@ public class problem1 {
         //Set up array
         Student[] registrationList= new Student[100];
         boolean running = true;
-        int check;
+        String check;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Welcome to the student Registration System");
@@ -52,9 +52,9 @@ public class problem1 {
             }
 
             System.out.println("To continue press anything other than 1. Press 1 to exit.");
-            check = sc.nextInt();
+            check = sc.next();
 
-            if (check ==1) {
+            if (check.equalsIgnoreCase("1")) {
                 running = false;
             }
 
