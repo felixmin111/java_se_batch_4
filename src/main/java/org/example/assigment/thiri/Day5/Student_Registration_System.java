@@ -1,6 +1,8 @@
 package org.example.assigment.thiri.Day5;
 
 public class Student_Registration_System {
+
+    //Initialization
     String name;
     private int age;
     String address;
@@ -22,33 +24,29 @@ public class Student_Registration_System {
             this.amount = amount;
         }
     }
-    public double getAmount() {
-        return amount;
-    }
+    public double getAmount() {return amount;}
 
     //setEmail & getEmail
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getEmail() {return email;}
 
-    public Student_Registration_System (String name, String address) {
-        System.out.println("Student Registration");
+    //Constructor
+    public Student_Registration_System () {
         studentCount += 1;
-        this.name = name;
-        this.address = address;
     }
 
+    //display output
     public void display() {
             System.out.println("---------Student Registration Confirmation--------");
-            System.out.println("Name: " + this.name);
-            System.out.println("Age: " + this.age);
+            System.out.println("Name: " + name);
+            System.out.println("Age: " + age);
             System.out.println("Address: " + this.address);
             System.out.println("Amount: " + this.amount);
             System.out.println("Email: " + this.email);
+            System.out.println("Student Count: " + studentCount);
+            System.out.println("--------------------------------------------------");
     }
 
 }
