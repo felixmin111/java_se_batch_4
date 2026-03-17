@@ -4,33 +4,30 @@ import java.util.Scanner;
 
 public class Problem5 {
     public static void main(String[] args) {
-        Double Effort = null;
-        Double Time = null;
+        double Effort = 0;
+        double Time = 0;
 
 
         System.out.println("Cocomo Calculator");
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter number of lines of code");
-        Double linesOfCode = sc.nextDouble();
+        double linesOfCode = sc.nextDouble();
         System.out.println("Enter project type:");
         String projectType = sc.nextLine();
 
 
 
-        Double Kloc = linesOfCode/ 1000.0;
+        double kloc = linesOfCode/ 1000.0;
 
         if (projectType.equalsIgnoreCase("Organic")){
-            Effort = 2.4 * Math.pow(Kloc, 1.05);
-            Time = 2.5 * Math.pow(Effort, 0.38);
+            Calculator(kloc, 2.4, 1.05, 0.38);
 
         }
         else if(projectType.equalsIgnoreCase("Semi-Detached")){
-            Effort = 3.0 * Math.pow(Kloc, 1.12);
-            Time = 2.5 * Math.pow(Effort, 0.35);
+            Calculator(kloc, 3.0, 1.12, 0.35);
         }
         else if(projectType.equalsIgnoreCase("Embedded")){
-            Effort = 3.6 * Math.pow(Kloc, 1.20);
-            Time = 2.5 * Math.pow(Effort, 0.32);
+            Calculator(kloc, 3.6, 1.20, 0.32);
         }
 
         else{
@@ -38,10 +35,15 @@ public class Problem5 {
         }
 
 
-        System.out.println("Time: " + Time + " months");
-        System.out.println("Person in group" + Effort/Time);
+
 
 
         sc.close();
+    }
+    public static void Calculator(Double Kloc, double a, double b, double c) {
+        double Effort = a * Math.pow(Kloc,b );
+        double Time = 2.5 * Math.pow( Effort, c);
+        System.out.println("Time: " + Time + " months");
+        System.out.println("Person in group" + Effort/Time);
     }
 }

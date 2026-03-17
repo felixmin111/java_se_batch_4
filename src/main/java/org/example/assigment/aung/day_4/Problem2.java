@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Problem2 {
     public static void main(String[] args) {
-        calculator();
+        screen();
     }
 
-    public static void calculator(){
+    public static void screen(){
         System.out.println("""
         Choose a process
         1. Add
