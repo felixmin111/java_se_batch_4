@@ -46,5 +46,16 @@ public class Student {
     public double getAmount(){
         return this.amount;
     }
+
+    public void output() {
+        System.out.println("Student name: "+ this.name );
+        System.out.println("Student address: " + this.address);
+        System.out.println("Student email: " + this.email);
+        System.out.println("Student age: " + getAge());
+        System.out.println("Student amount: " + getAmount());
+        System.out.println("-----------------");
+        System.out.println("Student count: "+ studentCount);
+
+    }
 }
 
