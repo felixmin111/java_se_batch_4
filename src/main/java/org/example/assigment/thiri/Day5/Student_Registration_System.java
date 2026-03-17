@@ -41,8 +41,8 @@ public class Student_Registration_System {
     public void display() {
             System.out.println("---------Student Registration Confirmation--------");
             System.out.println("Name: " + name);
-            System.out.println("Age: " + age);
-            System.out.println("Address: " + this.address);
+            System.out.println("Age: " + this.age);
+            System.out.println("Address: " + address);
             System.out.println("Amount: " + this.amount);
             System.out.println("Email: " + this.email);
             System.out.println("Student Count: " + studentCount);

@@ -45,7 +45,7 @@ public class Student_Input_Output {
                         if ((ans.equalsIgnoreCase("yes"))) {
                               break;
                         } else if (ans.equalsIgnoreCase("no")) {
-                              System.out.println("----------Thank you for registration!-------------");
+                              System.out.println("------------Thank you for registration------------");
                               System.exit(0);
 
                         } else {
