@@ -51,6 +51,8 @@ public class problem1 {
                 registrationList[i].output();
             }
 
+            System.out.println("Student count: "+ studentCount);
+
             System.out.println("To continue press 1.");
             check = sc.nextLine();
 
