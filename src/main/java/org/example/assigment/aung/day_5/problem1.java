@@ -1,11 +1,15 @@
 package org.example.assigment.aung.day_5;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 import static org.example.assigment.aung.day_5.Student.studentCount;
 
 public class problem1 {
     public static void main(String[] args) {
+        studentCreator();
+    }
+    public static void studentCreator() {
         //Set up array
         Student[] registrationList= new Student[100];
         boolean running = true;
@@ -17,27 +21,23 @@ public class problem1 {
         while (running) {
 
             System.out.println("Enter Student name:");
-            String studentName;
-            studentName = sc.nextLine();
+            String studentName = sc.nextLine();
+
 
             System.out.println("Enter Student age:");
-            int age;
-            age = sc.nextInt();
+            int age = sc.nextInt();
             sc.nextLine();
 
             System.out.println("Enter Student address:");
-            String address;
-            address = sc.nextLine();
+            String address = sc.nextLine();
 
 
             System.out.println("Enter Payment Amount:");
-            double amount;
-            amount = sc.nextDouble();
+            double amount = sc.nextDouble();
             sc.nextLine();
 
             System.out.println("Enter Student email:");
-            String email;
-            email = sc.nextLine();
+            String email = sc.nextLine();
 
 
             //Construct new object and set it into the array
@@ -51,13 +51,14 @@ public class problem1 {
                 registrationList[i].output();
             }
 
-            System.out.println("To continue press anything other than 1. Press 1 to exit.");
-            check = sc.next();
+            System.out.println("To continue press 1.");
+            check = sc.nextLine();
 
-            if (check.equalsIgnoreCase("1")) {
+            if (!Objects.equals(check, "1")) {
                 running = false;
             }
 
         }
     }
+
 }
