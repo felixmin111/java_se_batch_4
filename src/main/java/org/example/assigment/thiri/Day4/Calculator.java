@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
+        Input_Output();
+    }
+
+    public static void Input_Output(){
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter Number 1: ");
@@ -11,7 +16,6 @@ public class Calculator {
 
         System.out.println("Enter Number 2: ");
         float N2 = sc.nextFloat();
-
 
         System.out.println("Choose Process");
         System.out.println("Process 1: ADD");
@@ -22,6 +26,8 @@ public class Calculator {
         int process = sc.nextInt();
 
         System.out.println("Result: " + maths(N1, N2, process));
+
+        sc.close();
     }
 
     public static float maths(float num1, float num2, int process) {

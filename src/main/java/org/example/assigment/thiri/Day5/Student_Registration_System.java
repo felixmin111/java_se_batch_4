@@ -39,7 +39,7 @@ public class Student_Registration_System {
 
     //display output
     public void display() {
-            System.out.println("---------Student Registration Confirmation--------");
+            System.out.println("--------------------------------------------------");
             System.out.println("Name: " + name);
             System.out.println("Age: " + this.age);
             System.out.println("Address: " + address);
