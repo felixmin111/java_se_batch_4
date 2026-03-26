@@ -138,22 +138,22 @@ public class forShape {
         for (int i = 0; i < 4; i++) { //4
 
             for (int j = 0; j < 4 - i; j++) { //4,3,2,1
-                System.out.print("  ");
+                System.out.print("   ");
             }
             System.out.print(" * "); //first star of first 4 line
 
             for (int k = 0; k < 2 * i - 1; k++) { //1,3,5
-                System.out.print("  ");
+                System.out.print("   ");
             }
             if (i > 0) {
-                System.out.print("*"); //*after space
+                System.out.print(" *"); //*after space
             }
             System.out.println();
         }
 
         //last * line
         for (int j = 0; j < 9; j++) { //5*
-            System.out.print(" *");
+            System.out.print(" * ");
         }
         System.out.println();
     }
@@ -166,19 +166,19 @@ public class forShape {
 
         //first * line
         for (int j = 0; j < 9; j++) { //5*
-            System.out.print(" *");
+            System.out.print(" * ");
         }
         System.out.println();
 
         for (int i = 4; i > 0; i--) { //4
 
             for (int j = 0; j < 5 - i; j++) { //1,2,3,4
-                System.out.print("  ");
+                System.out.print("   ");
             }
-            System.out.print("*");
+            System.out.print(" *"); //first star
 
             for (int k = 0; k <= 2 * i - 3; k++) { //5,3,1
-                System.out.print("  ");
+                System.out.print("   ");
             }
             if (i > 1) {
                 System.out.print("*");
