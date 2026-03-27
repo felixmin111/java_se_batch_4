@@ -1,7 +1,7 @@
 package org.example.assigment.thiri.Day6;
 
 public class forShape {
-    public static void main(String[] args) {
+    static void main() {
         fullUpRightTriangle();
         fullDownRightTriangle();
         fullUpEqualTriangle();
@@ -62,6 +62,7 @@ public class forShape {
     }
 
     public static void fullDownEqualTriangle() {
+
         System.out.println();
         System.out.println("--- Full Equal Triangle (Down) --- ");
         System.out.println();
