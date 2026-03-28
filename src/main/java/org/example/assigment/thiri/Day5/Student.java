@@ -1,6 +1,6 @@
 package org.example.assigment.thiri.Day5;
 
-public class Student_Registration_System {
+public class Student {
 
     //Initialization
     String name;
@@ -33,7 +33,7 @@ public class Student_Registration_System {
     public String getEmail() {return email;}
 
     //Constructor
-    public Student_Registration_System () {
+    public Student() {
         studentCount += 1;
     }
 

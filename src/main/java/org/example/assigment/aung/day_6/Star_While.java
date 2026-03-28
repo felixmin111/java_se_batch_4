@@ -85,8 +85,6 @@ public class Star_While {
                     System.out.print(" ");
                 }
                 count2++;
-
-
             }
 
             System.out.println();

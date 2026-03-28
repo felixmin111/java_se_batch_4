@@ -1,22 +1,19 @@
 package org.example.assigment.lapyae.day5;
 
-import com.sun.nio.sctp.PeerAddressChangeNotification;
 
+public class Student {
 
-
-public class Stu_in_Out {
-
-    public String Name;
+    private String Name;
     private int Age;
-    public String Address;
+    private String Address;
     private double Amount;
-    public String Email;
+    private String Email;
 
     public static int StuCount;
     public String StuID;
     private static String schoolName;
 
-    public Stu_in_Out (String Name, String Email , String Address) {
+    public Student(String Name, String Email , String Address) {
         System.out.println("This student is recorded.");
         this.Name = Name;
         this.Address = Address;
@@ -44,12 +41,18 @@ public class Stu_in_Out {
             this.Amount = 0;
         }
     }
+    public void setEmail(String email) {
+        if(email != null && email.contains("@") && email.endsWith(".com")) {
+            this.Email = email;
+        }
+    }
 
     public double getAmount(){
         return this.Amount;
     }
 
-    public void output(){
+    public void outPut(){
+
         System.out.println("-----------------");
         System.out.println("Student's Name: "+ this.Name );
         System.out.println("Student's Address: " + this.Address);
