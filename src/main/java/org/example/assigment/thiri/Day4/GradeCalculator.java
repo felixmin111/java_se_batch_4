@@ -4,7 +4,13 @@ import java.util.Scanner;
 
 public class GradeCalculator {
     public static void main(String[] args) {
+        In_Out();
+    }
+
+    public static void In_Out() {
+
         Scanner sc = new Scanner(System.in);
+
         System.out.println("Enter Subject 1 mark: ");
         int sub1 = sc.nextInt();
 
@@ -25,6 +31,8 @@ public class GradeCalculator {
         System.out.println("Subject 3 Grade: " + Grade(sub3));
         System.out.println("Subject 4 Grade: " + Grade(sub4));
         System.out.println("Subject 5 Grade: " + Grade(sub5));
+
+        sc.close();
     }
 
     public static String Grade(int mark) {

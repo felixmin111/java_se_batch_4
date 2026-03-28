@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 public class CocomoCalculator {
     public static void main(String[] args) {
+        askingInput();
+    }
+
+    public static void askingInput() {
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter Number of Code Line: ");
@@ -18,6 +23,8 @@ public class CocomoCalculator {
         int type = sc.nextInt();
 
         cocomo(num, type);
+
+        sc.close();
     }
 
     public static void cocomo(float num, int type) {
@@ -42,9 +49,9 @@ public class CocomoCalculator {
         float people = (float) (effort / time);
 
 
-        System.out.println("Effort (Person-Month): " + effort);
-        System.out.println("Time (Months): " + time);
-        System.out.println("People Required: " + people);
+        System.out.println("Effort (Person-Month): "+ effort);
+        System.out.println("Time (Months): "+ time);
+        System.out.println("People Required: "+ people);
 
     }
 }
