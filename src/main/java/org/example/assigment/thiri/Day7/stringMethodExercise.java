@@ -138,7 +138,6 @@ public class stringMethodExercise {
     }
 
     //length()
-
     //1. Write a program that prints the length of "HelloWorld"
     public static void findingStringLength(String word) {
         int length = word.strip().length();
@@ -157,7 +156,6 @@ public class stringMethodExercise {
     }
 
     //charAt()
-
     //3. Given "Java", print each character one by one using a loop.
     public static void printingEachChar(String word) {
         System.out.print("3.");
@@ -193,7 +191,6 @@ public class stringMethodExercise {
     }
 
     //indexOf()
-
     //6. Given "banana", find the first position of 'a'.
     public static void findingFirstOccurrence(String word) {
         int firstOccurrence = word.indexOf("a") + 1;
@@ -229,7 +226,6 @@ public class stringMethodExercise {
     }
 
     //substring()
-
     //9. Given "Min Maung", print only "Min".
     public static void extractingFirstName(String word) {
         int space = word.indexOf(" ");
@@ -319,7 +315,6 @@ public class stringMethodExercise {
     }
 
     //replace()
-
     //19. Replace all spaces in a sentence with "-".
     public static void replacingSpaces(String word) {
         String word1 = word.replace(" ", "-");
@@ -339,7 +334,6 @@ public class stringMethodExercise {
     }
 
     //split()
-
     //21. Given a sentence, count how many words it has.
     public static void countingWords(String sentence) {
         String[] word1 = sentence.split(" ");
@@ -365,7 +359,6 @@ public class stringMethodExercise {
     }
 
     // loop + condition
-
     //23. Print how many even numbers are between 1 and 20.
     public static void countingEvenNumbers(int num1, int num2) {
 
@@ -442,7 +435,7 @@ public class stringMethodExercise {
     }
 
     // Character methods
-
+    //Character.isDigit()
     //28. Given "abc123", count how many digits are in the string.
     public static void countingDigits(String word) {
 
@@ -455,6 +448,7 @@ public class stringMethodExercise {
         System.out.println("28. There are " + count + " digits in the string of '" + word +"'.");
     }
 
+    //Character.isLetter()
     //29. Given "a1b2c3", count how many letters are in it.
     public static void countingLetters(String word) {
         int count = 0;
@@ -466,6 +460,8 @@ public class stringMethodExercise {
         System.out.println("29. There are " + count + " letters in the string of '" + word +"'.");
     }
 
+    //Character.isUpperCase()
+    //Character.isUpperCase()
     //30. Given "JaVa", count uppercase and lowercase letters separately.
     public static void countingUpperCaseLowerCase(String word) {
         int count1 = 0;
