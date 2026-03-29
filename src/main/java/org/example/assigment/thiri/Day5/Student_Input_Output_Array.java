@@ -3,8 +3,6 @@ package org.example.assigment.thiri.Day5;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.example.assigment.thiri.Day5.Student_Registration_System.studentCount;
-
 public class Student_Input_Output_Array {
     public static void main(String[] args) {
         askStudentInfo();
@@ -13,12 +11,12 @@ public class Student_Input_Output_Array {
     public static void askStudentInfo() {
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Student_Registration_System> students = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<>();
         boolean registration = true;
 
         while (registration) {
 
-            Student_Registration_System student = new Student_Registration_System();
+            Student student = new Student();
 
             System.out.println("------------Fill Student Information-----------");
 

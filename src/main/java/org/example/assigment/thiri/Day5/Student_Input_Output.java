@@ -1,6 +1,5 @@
 package org.example.assigment.thiri.Day5;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Student_Input_Output {
@@ -12,7 +11,7 @@ public class Student_Input_Output {
             while (true) {
                   Scanner sc = new Scanner(System.in);
 
-                  Student_Registration_System student = new Student_Registration_System();
+                  Student student = new Student();
 
                   System.out.println("---------Fill Student Information---------");
 

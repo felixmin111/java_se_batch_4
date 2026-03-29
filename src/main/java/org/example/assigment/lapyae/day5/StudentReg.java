@@ -1,85 +1,60 @@
 package org.example.assigment.lapyae.day5;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 
-import static org.example.assigment.aung.day_5.Student.studentCount;
-import static org.example.assigment.lapyae.day5.Stu_in_Out.StuCount;
+import static org.example.assigment.lapyae.day5.Student.StuCount;
 
 
 public class StudentReg {
+    public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+
         StuInfo();
     }
 
     public static void StuInfo() {
+        Student[] regList= new Student[100];
+        boolean flag = true;
+         do {
+             regList[StuCount] = getStudentInfo();
+             System.out.println("Do you want to continue? (Y/N)");
+             String input = sc.nextLine();
+             if (!input.equalsIgnoreCase("Y")) {
+                 flag = false;
+             }
+         }while (flag);
+         displayStudents(regList);
+    }
+    public static Student getStudentInfo(){
+        System.out.println("---------Enter Student's Information---------");
 
-        Stu_in_Out[] regList= new Stu_in_Out[100];
-        boolean running = true;
-        String check;
-        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the student name: ");
+        String Name = sc.nextLine();
 
+        System.out.println("Enter the student age: ");
+        int Age = sc.nextInt();
+        sc.nextLine();
 
-        while (true) {
-            Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the student address: ");
+        String Address = sc.nextLine();
 
+        System.out.println("Enter the student amount: ");
+        double Amount = sc.nextDouble();
+        sc.nextLine();
 
-            System.out.println("---------Enter Student's Information---------");
-
-            System.out.println("Enter the student name: ");
-            String Name = scan.nextLine();
-
-            System.out.println("Enter the student age: ");
-            int Age = scan.nextInt();
-            scan.nextLine();
-
-            System.out.println("Enter the student address: ");
-            String Address = scan.nextLine();
-
-            System.out.println("Enter the student amount: ");
-            double Amount = scan.nextDouble();
-            scan.nextLine();
-
-            System.out.println("Enter the student email: ");
-            String Email = scan.nextLine();
-
-
-            Stu_in_Out student = new Stu_in_Out(Name, Email, Address);
-            student.setAge(Age);
-            student.setAmount(Amount);
-
-            regList[StuCount - 1] = student;
-
-            for (int i = 0; i<StuCount; i++){
-                regList[i].output();
-            }
+        System.out.println("Enter the student email: ");
+        String Email = sc.nextLine();
 
 
-
-
-            while (true) {
-                System.out.println("Do you want to put another student's information? (yes or no); ");
-                String choice = scan.nextLine();
-
-                if ((choice.equalsIgnoreCase("yes"))) {
-                    break;
-                } else if (choice.equalsIgnoreCase("no")) {
-                    System.out.println("------------Thank you for registration------------");
-                    scan.close();
-                    System.exit(0);
-
-                } else {
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("               !!!Invalid Input!!!                ");
-                    System.out.println("           Please fill \"yes\" or \"no\"          ");
-                    System.out.println("--------------------------------------------------");
-                }
-
-
-            }
-
-
+        Student student = new Student(Name, Email, Address);
+        student.setAge(Age);
+        student.setAmount(Amount);
+        return student;
+    }
+    public static void displayStudents(Student[] students){
+        for (int i = 0; i<StuCount; i++){
+            students[i].outPut();
         }
     }
 }
