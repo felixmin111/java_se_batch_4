@@ -233,8 +233,7 @@ public class whileShape {
 
         System.out.println();
     }
-
-
+    
     public static void whileSquare() {
 
         System.out.println();
