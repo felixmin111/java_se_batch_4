@@ -9,7 +9,7 @@ public class StringPractice {
     }
 
     public static void display() {
-        /*
+
         System.out.println("Problem 1");
         System.out.println("------------------");
         Problem1();
@@ -94,7 +94,7 @@ public class StringPractice {
         System.out.println("------------------");
 
 
-        */
+
 
         System.out.println("Problem 17");
         System.out.println("------------------");
@@ -125,7 +125,7 @@ public class StringPractice {
         System.out.println("------------------");
         Problem22();
         System.out.println("------------------");
-        /*
+
 
         System.out.println("Problem 23");
         System.out.println("------------------");
@@ -141,6 +141,8 @@ public class StringPractice {
         System.out.println("------------------");
         Problem25();
         System.out.println("------------------");
+
+
 
         System.out.println("Problem 26");
         System.out.println("------------------");
@@ -166,7 +168,7 @@ public class StringPractice {
         System.out.println("------------------");
         Problem30();
         System.out.println("------------------");
-         */
+
     }
 
     public static void Problem1() {
@@ -309,94 +311,150 @@ public class StringPractice {
         }
     }
 
-    // Problem 17: Starts with vowel
     public static void Problem17() {
         String str = "Apple";
-        // TODO: Check whether string starts with a vowel
+        str = str.toLowerCase();
+        boolean vowel_start = str.startsWith("a") || str.startsWith("e") || str.startsWith("i") || str.startsWith("o") || str.startsWith("u");
+        if (vowel_start) {
+            System.out.println("It starts with a vowel.");
+        }
     }
 
-    // Problem 18: Check email
     public static void Problem18() {
         String email = "user@domain.com";
-        // TODO: Check whether email ends with ".com"
+        if (email.endsWith(".com")) {
+            System.out.println("It ends with .com");
+        }
     }
 
-    // --- 8. Problems using replace() ---
-
-    // Problem 19: Replace spaces
     public static void Problem19() {
         String sentence = "This is a test sentence.";
         // TODO: Replace all spaces with "-"
+        System.out.println(sentence.replace(' ', '-'));
     }
 
-    // Problem 20: Hide vowels
     public static void Problem20() {
         String str = "Hide these vowels";
-        // TODO: Replace all vowels with '*'
+        str = str.replace('a','*');
+        str = str.replace('A','*');
+        str = str.replace('e','*');
+        str = str.replace('E','*');
+        str = str.replace('i','*');
+        str = str.replace('I','*');
+        str = str.replace('o','*');
+        str = str.replace('O','*');
+        str = str.replace('u','*');
+        str = str.replace('U','*');
+        System.out.println(str);
     }
 
-    // --- 9. Problems using split() ---
-
-    // Problem 21: Count words
     public static void Problem21() {
         String sentence = "Count how many words are in this sentence.";
-        // TODO: Count how many words it has
+        String[] words = sentence.split(" ");
+        System.out.println("Word count: " + words.length);
     }
 
-    // Problem 22: Print words line by line
     public static void Problem22() {
         String sentence = "Split this by spaces";
-        // TODO: Split by spaces and print each word in a new line
+        String[] words = sentence.split(" ");
+        for (String lines : words) {
+            System.out.println(lines);
+        }
     }
 
-    // --- 10. Problems using loop + condition ---
-
-    // Problem 23: Count even numbers
     public static void Problem23() {
-        // TODO: Print how many even numbers are between 1 and 20
+        int count = 0;
+        for (int i=1; i <=20; i++ ) {
+            if (i%2 == 0) {
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 
-    // Problem 24: Sum of odd numbers
     public static void Problem24() {
-        // TODO: Find the sum of all odd numbers from 1 to 15
+        int count = 0;
+        for (int i=1; i <=15; i++ ) {
+            if (i%2 != 0) {
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 
-    // Problem 25: Multiplication table
     public static void Problem25() {
-        // TODO: Print multiplication table of 5
+        for (int i=0; i<=12; i++) {
+            System.out.println("5 x "+i+" = "+ 5*i);
+        }
     }
 
-    // Problem 26: Find biggest number
     public static void Problem26() {
         int a = 10;
         int b = 25;
         int c = 15;
-        // TODO: Given 3 numbers, find the biggest one using if-else
+        if (a>b && a>c) {
+            System.out.println("The biggest number is "+ a);
+        } else if (b>a && b>c) {
+            System.out.println("The biggest number is "+ b);
+        }
+        else {
+            System.out.println("The biggest number is "+ c);
+        }
     }
 
-    // Problem 27: Grade checker
     public static void Problem27() {
         int marks = 75;
-        // TODO: Print A(>=80), B(>=60), C(>=40), or Fail
+        if (marks>=80) {
+            System.out.println("A");
+        } else if (marks>=60) {
+            System.out.println("B");
+        } else if (marks>=40) {
+            System.out.println("C");
+        }
+        else {
+            System.out.println("Fail");
+        }
     }
 
-    // --- 11. Problems using Character methods ---
-
-    // Problem 28: Count digits
     public static void Problem28() {
         String str = "abc123";
-        // TODO: Count how many digits are in the string
+        int digits = 0;
+        for (int count=0; count<str.length(); count++) {
+            boolean check = Character.isDigit(str.charAt(count));
+            if (check) {
+                digits++;
+            }
+        }
+        System.out.println(digits);
     }
 
-    // Problem 29: Count letters
     public static void Problem29() {
         String str = "a1b2c3";
-        // TODO: Count how many letters are in it
+        int letters = 0;
+        for (int count=0; count<str.length(); count++) {
+            boolean check = Character.isLetter(str.charAt(count));
+            if (check) {
+                letters++;
+            }
+        }
+        System.out.println(letters);
     }
 
-    // Problem 30: Count uppercase and lowercase
     public static void Problem30() {
         String str = "JaVa";
-        // TODO: Count uppercase and lowercase letters separately
+        int upper = 0;
+        int lower = 0;
+        for (int count=0; count<str.length(); count++) {
+            boolean check1 = Character.isUpperCase(str.charAt(count));
+            boolean check2 = Character.isLowerCase(str.charAt(count));
+            if (check1) {
+                upper++;
+            }
+            else if (check2) {
+                lower++;
+            }
+        }
+        System.out.println("Upper case letters: "+ upper);
+        System.out.println("Lower case letters: "+ lower);
     }
 }
