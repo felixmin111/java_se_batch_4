@@ -15,7 +15,7 @@ public class star {
     }
 
     public static void starEx() {
-
+        System.out.print("Left Angled Triangle");
         int count = 0;
         while (6 > count) {
             int innerCount = 0;
@@ -30,6 +30,7 @@ public class star {
 
     public static void starEx1() {
         System.out.println("-------------------");
+        System.out.println("Inverted Left Angled Triangle");
         int count = 0;
         while (6 > count) {
             int innerCount = 5;
@@ -44,6 +45,7 @@ public class star {
 
     public static void starEx2() {
         System.out.println("-------------------");
+        System.out.println("Pyramid");
         int count = 1;
         while (5 >= count) {
             int spaceCount = 1;
@@ -63,6 +65,7 @@ public class star {
 
     public static void starEx3() {
         System.out.println("-------------------");
+        System.out.println("Inverted Pyramid");
         int count = 5;
         int n = 5;
         while (count > 0) {
@@ -84,6 +87,7 @@ public class star {
     }
     public static void starEx4() {
         System.out.println("-------------------");
+        System.out.println("Left Angled Hollow Triangle");
         int n = 5;
 
         System.out.println("* ");
@@ -110,6 +114,7 @@ public class star {
 
     public static void starEx5() {
         System.out.println("-------------------");
+        System.out.println("Inverted Left Angled Hollow Triangle");
         int n = 5;
 
         int baseCount = 1;
@@ -139,6 +144,7 @@ public class star {
 
     public static void starEx6() {
         System.out.println("-------------------");
+        System.out.println("Hollow Pyramid");
         int n = 5;
 
         int tipSpace = 1;
@@ -178,6 +184,7 @@ public class star {
     }
     public static void starEx7() {
         System.out.println("-------------------");
+        System.out.println("Inverted Hollow Pyramid");
         int n = 5;
 
         int baseCount = 1;
@@ -219,6 +226,7 @@ public class star {
 
     public static void starEx8(){
         System.out.println("-------------------");
+        System.out.println("Vertical Rectangle");
         int n = 0;
         while(n<5){
             int j = 0;
@@ -232,6 +240,7 @@ public class star {
     }
     public static void starEx9() {
         System.out.println("-------------------");
+        System.out.println("X Pattern");
         int n = 5;
 
         int count = 0;
