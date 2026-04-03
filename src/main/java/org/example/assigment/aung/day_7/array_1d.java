@@ -137,7 +137,7 @@ public class array_1d {
 
         int[] new_arr = new int[arr.length];
         for (int num = 0; num < arr.length; num++) {
-            new_arr[num] = num;
+            new_arr[num] = arr[num];
         }
         System.out.println(Arrays.toString(new_arr));
 
@@ -255,7 +255,7 @@ public class array_1d {
     public static void findAverage(int[] arr) {
         System.out.println("Problem 18: Find average");
         System.out.println("-------------------\n");
-        int sum = 0;
+        double sum = 0;
         for  (int num = 0; num < arr.length; num++) {
             sum += arr[num];
         }
