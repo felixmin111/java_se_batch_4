@@ -1,4 +1,4 @@
-package org.example.assigment.thiri.Day7;
+package org.example.assigment.thiri.Day6;
 public class stringMethodExercise {
     public static void main (String [] args) {
         //1.
