@@ -24,19 +24,21 @@ public class RoomBooking extends HotelData {
 
                         System.out.println("-".repeat(50));
                         System.out.println("==> Room " + roomNum + " is booked successfully for \"" + cusName + "\".");
-                        book = leavingCurrentSession("Booking");
+                        book = tryAgain("book");
                         break;
 
                     } else if (roomInfo[i][3].equals("Booked")) {
                         System.out.println("\n==> Unfortunately! Selected room is not Available");
-                        book = tryAgain();
+                        book = tryAgain("choose");
                     }
                 }
             }
             if (!found) {
-                System.out.println("\n==> Room number does not exist. Try Again!");
+                System.out.println("\n==> Room number does not exist.");
+                book = tryAgain("book");
             }
         }while(!book);
+        leavingCurrentSession("Booking");
     }
 
 }

@@ -23,30 +23,12 @@ public abstract class HotelData implements BookingSystem {
                 {"305", "Standard", "50.0", "Booked", "Sophia"}
         };
 
-        public static boolean tryAgain() {
-                String choice;
-                boolean book = false;
-                do{
-                        System.out.println("-----------------------------------------------");
-                        System.out.print("Would you like to choose another room? (y/n): ");
-                        choice = sc.nextLine();
-
-                        if (choice.equalsIgnoreCase("y")) {
-                                break;
-                        } else if (choice.equalsIgnoreCase("n")) {
-                                book = leavingCurrentSession("Current");
-                                break;
-                        }else{
-                                System.out.println("\n==> Invalid Input. Try Again!");
-                        }
-                } while (!choice.equalsIgnoreCase("y"));
-                return book;
-        }
-
         public static void header(String word) {
+
                 int width = 50;
                 int padding = (width - word.length()) / 2;
                 String space = " ".repeat(padding);
+
                 System.out.println("=".repeat(50));
                 System.out.println(space +  word);
                 System.out.println("=".repeat(50));
@@ -60,15 +42,40 @@ public abstract class HotelData implements BookingSystem {
                 return roomNum = sc.nextLine();
         }
 
+        public static boolean tryAgain(String word) {
+                String choice;
+                boolean book = false;
+                do{
+                        System.out.println("-".repeat(50));
+                        System.out.print("Would you like to "+ word + " another room? (y/n): ");
+                        choice = sc.nextLine();
+
+                        if (choice.equalsIgnoreCase("y")) {
+                                break;
+                        } else if (choice.equalsIgnoreCase("n")) {
+                                book = true;
+                                break;
+                        }else{
+                                System.out.println("\n==> Invalid Input. Try Again!");
+                        }
+                } while (!choice.equalsIgnoreCase("y"));
+                return book;
+        }
+
         public static boolean leavingCurrentSession(String word) {
+
                 boolean book;
+
                 int width = 50;
                 String word1 = "==> Leaving  Function <==";
+
                 int padding = (width - word.length() - word1.length()) / 2;
                 String space = " ".repeat(padding);
+
                 System.out.println("=".repeat(50));
                 System.out.println(space+"==> Leaving " + word + " Function <==");
                 System.out.println("=".repeat(50));
+
                 return book = true;
         }
 

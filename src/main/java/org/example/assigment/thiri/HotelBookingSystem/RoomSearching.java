@@ -29,14 +29,15 @@ public class RoomSearching extends HotelData {
                     if (roomInfo[i][3].equals("Booked")) {
                         System.out.println("Guest Name: " + name);
                     }
-                    exit = leavingCurrentSession("Searching");
+                    exit = tryAgain("search");
                     break;
                 }
             }
             if (!found) {
                 System.out.println("\n==> Room number " + roomNum + " does not exist.");
-                exit = tryAgain();
+                exit = tryAgain("search");
             }
         }while (!exit);
+        leavingCurrentSession("Searching");
     }
 }

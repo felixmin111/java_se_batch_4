@@ -18,6 +18,7 @@ public class RoomInfoDisplay extends HotelData {
                 System.out.printf("%-5s | %-10s | %-10s | %-10s |\n", num , type , "RM " + price , status);
             }else if(roomInfo[i][3].equals("Booked")){
                 System.out.printf("%-5s | %-10s | %-10s | %-10s | %-10s\n", num , type , "RM " + price, status , " by " + name);}
-        }System.out.println("-".repeat(50));
+        }
+        System.out.println("-".repeat(50));
     }
 }

@@ -27,12 +27,18 @@ public class MainApp {
                             7. Exit""");
             System.out.println("-".repeat(50));
 
+            try{
             System.out.println("Enter choice eg. 1: ");
             choice = sc.nextInt();
+            sc.nextLine();
+            } catch (RuntimeException e) {
+                sc.nextLine();
+                choice = 0;
+            }
 
             choiceProcessing(choice);
 
-            if (choice== 1|| choice== 2 || choice== 3|| choice== 4|| choice== 5|| choice== 6) {
+            if (choice== 1 || choice== 2 || choice== 3|| choice== 4|| choice== 5|| choice== 6) {
                 choice = continueService();}
 
         } while (choice != 7 ) ;
@@ -64,7 +70,7 @@ public class MainApp {
                 BookingService bookingService6 = new BookingService(new ExitSystem());
                 break;
             default:
-                System.out.println( "==> Invalid Input!");
+                System.out.println("\n==> Invalid Input. Try Again!");
                 break;
         }
 
@@ -84,7 +90,8 @@ public class MainApp {
                 choice1 = 7;
                 break;
             } else {
-                System.out.println("==> Invalid input. Try again!");
+                System.out.println("\n==> Invalid input. Try again!");
+                System.out.println("-".repeat(50));
             }
         } while (!keepingOn.equals("y"));
         return choice1;
