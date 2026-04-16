@@ -45,6 +45,10 @@ public class MainControl {
         }
     }
 
-    public long handleCountAvailable() { return service.countAvailable(); }
-    public long handleCountBooked() { return service.countBooked(); }
+    public long handleCountAvailable() {
+        return service.countAvailable();
+    }
+    public long handleCountBooked() {
+        return service.countBooked();
+    }
 }

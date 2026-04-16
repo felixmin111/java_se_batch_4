@@ -15,7 +15,7 @@ public class HotelRooms {
         this.guestName = "";
     }
 
-    // Getters and Setters
+
     public int getRoomNumber() { return roomNumber; }
     public String getRoomType() { return roomType; }
     public double getPrice() { return price; }
