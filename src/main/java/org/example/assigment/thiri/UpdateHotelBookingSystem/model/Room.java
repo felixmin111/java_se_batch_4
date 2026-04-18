@@ -1,6 +1,6 @@
 package org.example.assigment.thiri.UpdateHotelBookingSystem.model;
 
-public class RoomData {
+public class Room {
 
     private int num;
     private String type;
@@ -8,7 +8,7 @@ public class RoomData {
     private String status;
     private String cusName;
 
-    public RoomData(int num, String type, double price, String status, String cusName) {
+    public Room(int num, String type, double price, String status, String cusName) {
         this.num = num;
         this.type = type;
         this.price = price;

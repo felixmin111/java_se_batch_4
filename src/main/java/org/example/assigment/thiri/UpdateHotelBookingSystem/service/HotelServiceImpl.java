@@ -1,44 +1,43 @@
 package org.example.assigment.thiri.UpdateHotelBookingSystem.service;
 
-import org.example.assigment.aung.hotelassignment.model.Room;
-import org.example.assigment.thiri.UpdateHotelBookingSystem.model.RoomData;
+import org.example.assigment.thiri.UpdateHotelBookingSystem.model.Room;
 
 public class HotelServiceImpl implements HotelService {
-    public RoomData[] roomData = new RoomData[15];
+    public Room[] roomData = new Room[15];
 
     public HotelServiceImpl(){
-        roomData[0] = new RoomData(101, "Standard", 50.0, "Available", "");
-        roomData[1] = new RoomData(102, "Deluxe", 100.0, "Booked", "Alice");
-        roomData[2] = new RoomData(103, "Standard", 50.0, "Available", "");
-        roomData[3] = new RoomData(104, "Deluxe", 100.0, "Available", "");
-        roomData[4] = new RoomData(105, "Suite", 150.0, "Booked", "John");
-        roomData[5] = new RoomData(201, "Standard", 50.0, "Available", "");
-        roomData[6] = new RoomData(202, "Deluxe", 100.0, "Booked", "Emma");
-        roomData[7] = new RoomData(203, "Suite", 150.0, "Available", "");
-        roomData[8] = new RoomData(204, "Standard", 50.0, "Available", "");
-        roomData[9] = new RoomData(205, "Deluxe", 100.0, "Available", "");
-        roomData[10] = new RoomData(301, "Suite", 150.0, "Booked", "David");
-        roomData[11] = new RoomData(302, "Standard", 50.0, "Available", "");
-        roomData[12] = new RoomData(303, "Deluxe", 100.0, "Available", "");
-        roomData[13] = new RoomData(304, "Suite", 150.0, "Available", "");
-        roomData[14] = new RoomData(305, "Standard", 50.0, "Booked", "Sophia");
+        roomData[0] = new Room(101, "Standard", 50.0, "Available", "");
+        roomData[1] = new Room(102, "Deluxe", 100.0, "Booked", "Alice");
+        roomData[2] = new Room(103, "Standard", 50.0, "Available", "");
+        roomData[3] = new Room(104, "Deluxe", 100.0, "Available", "");
+        roomData[4] = new Room(105, "Suite", 150.0, "Booked", "John");
+        roomData[5] = new Room(201, "Standard", 50.0, "Available", "");
+        roomData[6] = new Room(202, "Deluxe", 100.0, "Booked", "Emma");
+        roomData[7] = new Room(203, "Suite", 150.0, "Available", "");
+        roomData[8] = new Room(204, "Standard", 50.0, "Available", "");
+        roomData[9] = new Room(205, "Deluxe", 100.0, "Available", "");
+        roomData[10] = new Room(301, "Suite", 150.0, "Booked", "David");
+        roomData[11] = new Room(302, "Standard", 50.0, "Available", "");
+        roomData[12] = new Room(303, "Deluxe", 100.0, "Available", "");
+        roomData[13] = new Room(304, "Suite", 150.0, "Available", "");
+        roomData[14] = new Room(305, "Standard", 50.0, "Booked", "Sophia");
     }
 
     @Override
     public void displayAllRooms() {
 
-        for (RoomData room : roomData){
+        for (Room room : roomData){
             System.out.println(room);}
     }
 
     @Override
     public void bookRoom(int roomNum, String cusName)  {
         boolean found = false;
-            for (RoomData room : roomData) {
+            for (Room room : roomData) {
                 if (room.getNum()==roomNum) {
                     found = true;
 
-                    if (room.getStatus().equalsIgnoreCase("Available")) {
+                    if (room.getStatus().equalsIgnoreCase("0")) {
                         room.setStatus("Booked");
                         room.setCusName(cusName);
 
@@ -57,7 +56,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void cancelBooking(int roomNum) {
         boolean found = false;
-        for (RoomData room : roomData) {
+        for (Room room : roomData) {
             if (room.getNum()==roomNum) {
                 found = true;
                 if (room.getStatus().equalsIgnoreCase("Booked")) {
@@ -74,7 +73,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void searchRoom(int roomNum) {
         boolean found = false;
-        for (RoomData room : roomData) {
+        for (Room room : roomData) {
             if (room.getNum()==roomNum) {
                 found = true;
                 System.out.println("\n==> Details Information of the Room <==");
@@ -95,7 +94,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void getAvailableRoomCount() {
         int count = 0;
-        for (RoomData room : roomData)  {
+        for (Room room : roomData)  {
             if (room.getStatus().equalsIgnoreCase("Available")) {
                 count++;
             }
@@ -106,7 +105,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void getBookedRoomCount() {
         int count = 0;
-        for (RoomData room : roomData)  {
+        for (Room room : roomData)  {
             if (room.getStatus().equalsIgnoreCase("Booked")) {
                 count++;
             }
