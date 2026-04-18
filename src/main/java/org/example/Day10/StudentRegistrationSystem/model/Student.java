@@ -12,7 +12,6 @@ public class Student extends User {
 
     }
 
-
     public String getId() {
         return id;
     }

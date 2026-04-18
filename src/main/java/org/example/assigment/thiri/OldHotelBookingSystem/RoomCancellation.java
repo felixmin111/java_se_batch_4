@@ -1,4 +1,4 @@
-package org.example.assigment.thiri.HotelBookingSystem;
+package org.example.assigment.thiri.OldHotelBookingSystem;
 
 public class RoomCancellation extends HotelData {
 

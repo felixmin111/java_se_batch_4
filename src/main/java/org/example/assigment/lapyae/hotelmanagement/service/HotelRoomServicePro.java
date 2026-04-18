@@ -8,7 +8,7 @@ public class HotelRoomServicePro implements HotelRoomService {
     private List<HotelRooms> rooms = new ArrayList<>();
 
     public HotelRoomServicePro() {
-        // Sample data matching the assignment requirements [cite: 23, 24, 25, 26]
+
         rooms.add(new HotelRooms(101, "Standard", 50.0));
         rooms.add(new HotelRooms(102, "Deluxe", 100.0));
         rooms.add(new HotelRooms(103, "Standard", 50.0));
