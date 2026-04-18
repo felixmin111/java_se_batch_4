@@ -1,9 +1,7 @@
-package org.example.assigment.thiri.HotelBookingSystem;
+package org.example.assigment.thiri.OldHotelBookingSystem;
 
-import java.util.Scanner;
-
-import static org.example.assigment.thiri.HotelBookingSystem.HotelData.header;
-import static org.example.assigment.thiri.HotelBookingSystem.HotelData.sc;
+import static org.example.assigment.thiri.OldHotelBookingSystem.HotelData.header;
+import static org.example.assigment.thiri.OldHotelBookingSystem.HotelData.sc;
 
 public class MainApp {
 
