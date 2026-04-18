@@ -1,13 +1,14 @@
 package org.example.Day10.StudentRegistrationSystem.controller;
 
+import org.example.Day10.StudentRegistrationSystem.service.StudentService;
 import org.example.Day10.StudentRegistrationSystem.view.StudentView;
 import org.example.Day10.StudentRegistrationSystem.model.Student;
 import org.example.Day10.StudentRegistrationSystem.service.StudentServiceImpl;
 
 public class StudentController {
-    private StudentServiceImpl studentService;
+    private StudentService studentService;
     private StudentView studentView;
-    public StudentController(StudentServiceImpl studentService, StudentView studentView) {
+    public StudentController(StudentService studentService, StudentView studentView) {
         this.studentService = studentService;
         this.studentView = studentView;
     }

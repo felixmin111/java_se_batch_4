@@ -1,13 +1,12 @@
 package org.example.assigment.lapyae.hotelmanagement.controller;
 
 import org.example.assigment.lapyae.hotelmanagement.service.HotelRoomService;
-import org.example.assigment.lapyae.hotelmanagement.view.MenuPage;
 import org.example.assigment.lapyae.hotelmanagement.service.*;
 import org.example.assigment.lapyae.hotelmanagement.model.HotelRooms;
 import org.example.assigment.lapyae.hotelmanagement.exception.*;
 import java.util.List;
 
-public class MainControl {
+public class MainController {
     private HotelRoomService service = new HotelRoomServicePro();
 
     public List<HotelRooms> handleDisplayAll() {

@@ -1,10 +1,10 @@
 package org.example.assigment.lapyae.hotelmanagement.view;
-import org.example.assigment.lapyae.hotelmanagement.controller.MainControl;
+import org.example.assigment.lapyae.hotelmanagement.controller.MainController;
 import org.example.assigment.lapyae.hotelmanagement.model.HotelRooms;
 import java.util.Scanner;
 
 public class MenuPage {
-    private MainControl controller = new MainControl();
+    private MainController controller = new MainController();
     private Scanner sc = new Scanner(System.in);
 
     public void start() {
