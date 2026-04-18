@@ -1,54 +1,74 @@
 package org.example.assigment.lapyae.hotelmanagement.controller;
 
-import org.example.assigment.lapyae.hotelmanagement.service.HotelRoomService;
-import org.example.assigment.lapyae.hotelmanagement.view.MenuPage;
 import org.example.assigment.lapyae.hotelmanagement.service.*;
 import org.example.assigment.lapyae.hotelmanagement.model.HotelRooms;
+import org.example.assigment.lapyae.hotelmanagement.view.MenuPage;
 import org.example.assigment.lapyae.hotelmanagement.exception.*;
 import java.util.List;
 
 public class MainControl {
     private HotelRoomService service = new HotelRoomServicePro();
+    private MenuPage menuPage = new MenuPage(); // Controller owns the View
 
-    public List<HotelRooms> handleDisplayAll() {
-        return service.getAllRooms();
+    public void start() {
+        while (true) {
+
+            int choice = menuPage.displayMenuAndGetChoice();
+
+            switch (choice) {
+                case 1:
+                    menuPage.displayAllRooms(service.getAllRooms());
+                    break;
+                case 2:
+                    int rNum = menuPage.getRoomNumberInput();
+                    String name = menuPage.getGuestNameInput();
+                    handleBooking(rNum, name);
+                    break;
+                case 3:
+                    handleCancel(menuPage.getRoomNumberInput());
+                    break;
+                case 4:
+                    handleSearch(menuPage.getRoomNumberInput());
+                    break;
+                case 5:
+                    menuPage.printMessage("Available Rooms: " + service.countAvailable());
+                    break;
+                case 6:
+                    menuPage.printMessage("Booked Rooms: " + service.countBooked());
+                    break;
+                case 7:
+                    menuPage.printMessage("Exiting program...");
+                    System.exit(0);
+                default:
+                    menuPage.printMessage("Invalid option.");
+            }
+        }
     }
 
-    public String handleBooking(int roomNum, String name) {
+    private void handleBooking(int roomNum, String name) {
         try {
             service.bookRoom(roomNum, name);
-            return "Room " + roomNum + " booked successfully for " + name + ".";
+            menuPage.printMessage("Room " + roomNum + " booked successfully for " + name + ".");
         } catch (Exception e) {
-            return e.getMessage();
+            menuPage.printMessage(e.getMessage());
         }
     }
 
-    public String handleCancel(int roomNum) {
+    private void handleCancel(int roomNum) {
         try {
             service.cancelBooking(roomNum);
-            return "Booking for Room " + roomNum + " has been cancelled.";
+            menuPage.printMessage("Booking for Room " + roomNum + " has been cancelled.");
         } catch (Exception e) {
-            return e.getMessage();
+            menuPage.printMessage(e.getMessage());
         }
     }
 
-    public void handleSearch(int roomNum) {
+    private void handleSearch(int roomNum) {
         try {
             HotelRooms room = service.searchRoom(roomNum);
-            System.out.println("Room Number: " + room.getRoomNumber());
-            System.out.println("Room Type: " + room.getRoomType());
-            System.out.println("Price: " + room.getPrice());
-            System.out.println("Status: " + (room.isBooked() ? "Booked" : "Available"));
-            if (room.isBooked()) System.out.println("Guest Name: " + room.getGuestName());
+            menuPage.displayRoomDetails(room);
         } catch (NotFoundRoomsException e) {
-            System.out.println(e.getMessage());
+            menuPage.printMessage(e.getMessage());
         }
-    }
-
-    public long handleCountAvailable() {
-        return service.countAvailable();
-    }
-    public long handleCountBooked() {
-        return service.countBooked();
     }
 }
