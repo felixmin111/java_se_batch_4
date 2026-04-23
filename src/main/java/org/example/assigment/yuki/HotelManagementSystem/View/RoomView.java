@@ -5,12 +5,24 @@ public class RoomView {
     Scanner sc = new Scanner(System.in);
 
     public int showMenu() {
+        System.out.println("\n===== Hotel Room Booking System =====");
+
         System.out.println("1. Display All Rooms");
-        System.out.println("2. Display Room");
-        System.out.println("3. Book Room");
-        System.out.println("4. Cancel Booking");
-        System.out.println("5. Exit");
+
+        System.out.println("2. Book Room");
+
+        System.out.println("3. Cancel Booking");
+
+        System.out.println("4. Search Room");
+
+        System.out.println("5. Count Available Rooms");
+
+        System.out.println("6. Count Booked Rooms");
+
+        System.out.println("7. Exit");
+
         System.out.print("Enter your choice: ");
+
         return sc.nextInt();
     }
 
@@ -20,6 +32,7 @@ public class RoomView {
     }
 
     public String getGuestName() {
+        sc.nextLine();
         System.out.print("Enter Guest Name: ");
         return sc.nextLine();
     }

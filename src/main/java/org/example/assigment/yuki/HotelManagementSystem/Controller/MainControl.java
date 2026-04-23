@@ -17,22 +17,30 @@ public class MainControl {
 
         do {
             choice = view.showMenu();
-
-            if (choice == 1) {
-                displayAllRooms();
-            } else if (choice == 2) {
-                searchRoom();
-            } else if (choice == 3) {
-                bookRoom();
-            } else if (choice == 4) {
-                cancelBooking();
-            } else if (choice == 5) {
-                view.showMessage("Exiting program...");
-            } else {
-                view.showMessage("Invalid choice.");
+            switch (choice) {
+                case 1:
+                    displayAllRooms();
+                    break;
+                case 2:
+                    bookRoom();
+                    break;
+                case 3:
+                    cancelBooking();
+                    break;
+                case 4:
+                    searchRoom();
+                    break;
+                case 5:
+                    countAvailableRooms();
+                    break;
+                case 6:
+                    countBookedRooms();
+                    break;
+                case 7:
+                    view.showMessage("Exiting...");
+                    break;
             }
-
-        } while (choice != 5);
+        }while (choice != 7);
     }
 
     public void displayAllRooms() {
@@ -44,37 +52,21 @@ public class MainControl {
         int roomNumber = view.getRoomNumber();
         String guestName = view.getGuestName();
 
-        Room room = service.findRoomByNumber(roomNumber);
-
-        if (room == null) {
-            view.showMessage("Room not found.");
-            return;
-        }
-
-        if (room.isBooked()) {
-            view.showMessage("Room " + roomNumber + " is already booked.");
-            return;
-        }
-
-        boolean booked = service.bookRoom(roomNumber, guestName);
-
-        if (booked) {
+        try {
+            service.bookRoom(roomNumber, guestName);
             view.showMessage("Room " + roomNumber + " booked successfully for " + guestName + ".");
-        } else {
-            view.showMessage("Booking failed.");
+        }catch (Exception e) {
+            view.showMessage(e.getMessage());
         }
     }
 
     public void cancelBooking() {
         int roomNumber = view.getRoomNumber();
-        int result = service.cancelBooking(roomNumber);
-
-        if (result == -1) {
-            view.showMessage("There is no room called " + roomNumber);
-        } else if (result == 0) {
-            view.showMessage("Room " + roomNumber + " is not currently booked.");
-        } else {
-            view.showMessage("Booking for Room " + roomNumber + " has been cancelled.");
+        try {
+            service.cancelBooking(roomNumber);
+            view.showMessage("Booking cancelled successfully.");
+        } catch (Exception e) {
+            view.showMessage(e.getMessage());
         }
     }
 

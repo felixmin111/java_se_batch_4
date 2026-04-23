@@ -1,8 +1,11 @@
 package org.example.assigment.yuki.HotelManagementSystem.Service;
 
+import org.example.assigment.yuki.HotelManagementSystem.Exception.RoomAlreadyBookedException;
+import org.example.assigment.yuki.HotelManagementSystem.Exception.RoomNotFoundException;
+import org.example.assigment.yuki.HotelManagementSystem.Exception.RoomNotBookedException;
 import org.example.assigment.yuki.HotelManagementSystem.Model.Room;
 
-public class RoomService {
+public class RoomService implements RoomServiceImpl{
     private Room[] rooms;
     public RoomService() {
         rooms = new Room[10];
@@ -31,39 +34,38 @@ public class RoomService {
         return null;
     }
 
-    public boolean bookRoom(int roomNumber, String guestName) {
+    @Override
+    public void bookRoom(int roomNumber, String guestName) throws Exception {
         Room room = findRoomByNumber(roomNumber);
 
         if (room == null) {
-            return false;
+            throw new RoomNotFoundException("Room not found.");
         }
-
         if (room.isBooked()) {
-            return false;
+            throw new RoomAlreadyBookedException("Room is already booked.");
         }
         room.setBooked(true);
         room.setGuestName(guestName);
-        return true;
     }
 
-    public int cancelBooking(int roomNumber) {
+    @Override
+    public void cancelBooking(int roomNumber) throws Exception {
         Room room = findRoomByNumber(roomNumber);
         if (room == null) {
-            return -1;
+            throw new RoomNotFoundException("Room not found.");
         }
-
         if (!room.isBooked()) {
-            return 0;
+            throw new RoomNotBookedException("Room is not currently booked.");
         }
         room.setBooked(false);
         room.setGuestName("");
-        return 1;
+
     }
 
     public int countAvailableRooms() {
         int availableRooms = 0;
         for(int i = 0; i < rooms.length; i++){
-            if(rooms[i].isBooked() == false){
+            if(!rooms[i].isBooked()){
                 availableRooms++;
             }
         }
