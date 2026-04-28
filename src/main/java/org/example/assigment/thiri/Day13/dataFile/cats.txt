@@ -1,0 +1,2 @@
+101,thiri,1,orange,CAT,true,long
+102,moe,2,yellow,CAT,false,short
