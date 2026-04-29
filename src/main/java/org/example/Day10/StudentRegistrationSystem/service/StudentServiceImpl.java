@@ -6,6 +6,8 @@ public class StudentServiceImpl implements StudentService {
     private static Student[] students = new Student[100];
     public static int studentCount;
 
+
+
     @Override
     public void registerStudent(Student student) {
         students[studentCount++] = student;

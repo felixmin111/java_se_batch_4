@@ -5,6 +5,7 @@ import org.example.assigment.thiri.Day13.model.Dog;
 import org.example.assigment.thiri.Day13.model.Pet;
 import org.example.assigment.thiri.Day13.repository.CatFileRepository;
 import org.example.assigment.thiri.Day13.repository.DogFileRepository;
+import org.example.assigment.thiri.Day13.view.Menu;
 
 import java.util.ArrayList;
 import static org.example.assigment.thiri.Day13.view.Menu.sc;
@@ -18,24 +19,55 @@ public class PetServiceImpl implements PetService {
     @Override
     public void input(int input2) {
 
-        System.out.print("Enter id: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        boolean condition1 = true;
+        int id = 0;
+        while(condition1) {
+            try {
+                System.out.print("Enter id: ");
+                id = Menu.sc.nextInt();
+                sc.nextLine();
+                condition1 = false;
+            } catch (Exception e) {
+                System.out.println("Invalid Input! Enter a number.");
+                sc.nextLine();
+            }
+        }
 
         System.out.print("Enter name: ");
         String name = sc.nextLine();
 
-        System.out.print("Enter age: ");
-        int age = sc.nextInt();
-        sc.nextLine();
+        boolean condition2 = true;
+        int age = 0;
+
+        while(condition2) {
+            try {
+                System.out.print("Enter age: ");
+                age = Menu.sc.nextInt();
+                sc.nextLine();
+                condition2 = false;
+            } catch (Exception e) {
+                System.out.println("Invalid Input! Enter a number.");
+                sc.nextLine();
+            }
+        }
 
         System.out.print("Enter color: ");
         String color = sc.nextLine();
 
         if (input2 == 1) {
-            System.out.print("Is indoor (true/false): ");
-            boolean indoor = sc.nextBoolean();
-            sc.nextLine();
+            boolean condition3 = true;
+            boolean indoor = false;
+            while(condition3) {
+                try {
+                    System.out.print("Is indoor (true/false): ");
+                    indoor = Menu.sc.nextBoolean();
+                    sc.nextLine();
+                    condition3 = false;
+                } catch (Exception e) {
+                    System.out.println("Invalid Input! Enter true or false.");
+                    sc.nextLine();
+                }
+            }
 
             System.out.print("Enter fur length: ");
             String len = sc.nextLine();
@@ -48,9 +80,19 @@ public class PetServiceImpl implements PetService {
             System.out.print("Enter breed: ");
             String breed = sc.nextLine();
 
-            System.out.print("Is trained (true/false): ");
-            boolean trained = sc.nextBoolean();
-            sc.nextLine();
+            boolean trained = false;
+            boolean condition4 = true;
+            while(condition4) {
+                try {
+                    System.out.print("Is trained (true/false): ");
+                    trained = Menu.sc.nextBoolean();
+                    sc.nextLine();
+                    condition4 = false;
+                } catch (Exception e) {
+                    System.out.println("Invalid Input! Enter true or false.");
+                    sc.nextLine();
+                }
+            }
 
             Dog dog = new Dog(id, name, age, color, Pet.PetType.DOG, breed, trained);
             addDog(dog);
