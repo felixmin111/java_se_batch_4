@@ -1,0 +1,2 @@
+1,Meow,3,CAT,yellow,true,SHORT
+2,ad,3,CAT,Brown,true,MEDIUM
