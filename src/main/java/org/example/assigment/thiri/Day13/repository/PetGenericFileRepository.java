@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public abstract class PetGenericFileRepository<T> {
 
-    // Save a collection to file
+
     public void saveCollectionToFile(String filePath, ArrayList<T> objects) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (T object : objects) {
