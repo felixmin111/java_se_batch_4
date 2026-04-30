@@ -35,11 +35,11 @@ public class Dog extends Pet {
 
     @Override
     public String toString() {
-        return "["+getType()+"]\n"+
+        return "["+getType().getLabel()+"]\n"+
                 "ID: "+getId()+"\n"+
                 "Name: "+getName()+"\n"+
                 "Age: "+getAge()+"\n"+
-                "Type: "+getType()+"\n"+
+                "Type: "+getType().getLabel()+"\n"+
                 "Color: "+getColor()+"\n"+
                 "Breed: "+getBreed()+"\n"+
                 "isTrained: "+isTrained()+"\n";
