@@ -4,7 +4,7 @@ import org.example.assigment.lapyae.hotelmanagement.service.*;
 import org.example.assigment.lapyae.hotelmanagement.model.HotelRooms;
 import org.example.assigment.lapyae.hotelmanagement.view.MenuPage;
 import org.example.assigment.lapyae.hotelmanagement.exception.*;
-import java.util.List;
+
 
 public class MainControl {
     private HotelRoomService service = new HotelRoomServicePro();
