@@ -3,7 +3,15 @@ package org.example.assigment.aung.petassignment.model;
 public class Cat extends Pet{
     private boolean isIndoor;
     public enum Furlength{
-        LONG, MEDIUM, SHORT
+        LONG("Long"), MEDIUM("Medium"), SHORT("Short");
+
+        private String label;
+        Furlength(String label) {
+            this.label = label;
+        }
+        public String getLabel() {
+            return label;
+        }
     }
     private Furlength furlength;
 
@@ -36,14 +44,14 @@ public class Cat extends Pet{
 
     @Override
     public String toString() {
-       return "["+getType()+"]\n"+
+       return "["+getType().getLabel()+"]\n"+
                "ID: "+getId()+"\n"+
                "Name: "+getName()+"\n"+
                "Age: "+getAge()+"\n"+
-               "Type: "+getType()+"\n"+
+               "Type: "+getType().getLabel()+"\n"+
                "Color: "+getColor()+"\n"+
                "Indoor: "+isIndoor()+"\n"+
-               "Furlength: "+getFurlength().name()+"\n";
+               "Furlength: "+getFurlength().getLabel()+"\n";
 
     }
 

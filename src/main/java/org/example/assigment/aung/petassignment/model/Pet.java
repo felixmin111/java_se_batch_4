@@ -5,10 +5,22 @@ public abstract class Pet {
     private String name;
     private int age;
     public enum Type{
-        DOG, CAT
+        DOG("Dog"), CAT("Cat");
+
+        private String label;
+
+        Type(String label) {
+            this.label = label;
+        }
+        public String getLabel() {
+            return label;
+        }
     }
+
     private Type type;
     private String color;
+
+
 
     public Pet(String id, String name, int age, Type type, String color) {
         this.id = id;
