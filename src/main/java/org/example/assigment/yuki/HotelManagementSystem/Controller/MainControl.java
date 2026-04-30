@@ -1,13 +1,13 @@
 package org.example.assigment.yuki.HotelManagementSystem.Controller;
 import org.example.assigment.yuki.HotelManagementSystem.Model.Room;
-import org.example.assigment.yuki.HotelManagementSystem.Service.RoomService;
+import org.example.assigment.yuki.HotelManagementSystem.Service.RoomServiceImpl;
 import org.example.assigment.yuki.HotelManagementSystem.View.RoomView;
 
 public class MainControl {
     private RoomView view;
-    private RoomService service;
+    private RoomServiceImpl service;
 
-    public MainControl(RoomView view, RoomService service) {
+    public MainControl(RoomView view, RoomServiceImpl service) {
         this.view = view;
         this.service = service;
     }

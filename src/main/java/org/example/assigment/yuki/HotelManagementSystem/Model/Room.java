@@ -21,17 +21,17 @@ public class Room {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+//    public void setRoomNumber(int roomNumber) {
+//        this.roomNumber = roomNumber;
+//    }
 
     public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
+//    public void setRoomType(String roomType) {
+//        this.roomType = roomType;
+//    }
 
     public double getPrice() {
         return price;
