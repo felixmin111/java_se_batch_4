@@ -38,10 +38,14 @@ public class Pet {
     }
 
     public String toString() {
-        return "id"+ id+"name" +name +"age" +age+"type" +type+ "color" +color ;
+        return "ID: " + id +
+                "\nName: " + name +
+                "\nAge: " + age +
+                "\nType: " + type +
+                "\nColor: " + color;
     }
 
     public String toFileString(){
-        return String.format("%d %s %d %s %s", id, name, age, type, color);
+        return String.format("%d,%s,%d,%s,%s", id, name, age, type, color);
     }
 }

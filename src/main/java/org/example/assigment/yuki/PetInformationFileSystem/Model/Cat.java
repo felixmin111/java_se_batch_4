@@ -5,16 +5,25 @@ public class Cat extends Pet{
     private double furLength;
 
     public Cat(){}
-    public Cat(int id,String name, int age, String type, String color, boolean isIndoor, double furLength) {
-        super(id,name,age,type,color);
+    public Cat(int id, String name, int age, String color,
+               boolean isIndoor, double furLength) {
+        super(id, name, age, "Cat", color);
         this.isIndoor = isIndoor;
         this.furLength = furLength;
     }
 
 
+    @Override
+    public String toFileString() {
+        return super.toFileString() + "," + isIndoor + "," + furLength;
+    }
 
     @Override
-    public String toString(){
-        return super.toString() + ",isIndoor: " + isIndoor + ",furLength: " + furLength;
+    public String toString() {
+        return "[Cat]\n" +
+                super.toString() +
+                "\nIndoor: " + isIndoor +
+                "\nFur Length: " + furLength +
+                "\n---------------------";
     }
 }
