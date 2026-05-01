@@ -7,8 +7,8 @@ import org.example.assigment.yuki.PetInformationFileSystem.View.PetView;
 
 public class MainApp {
     public static void main(String[] args) {
-        PetView view = new PetView();
         PetService service = new PetService();
+        PetView view = new PetView(service);
         MainController controller = new MainController(view, service);
         controller.start();
 

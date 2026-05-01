@@ -1,14 +1,15 @@
-package org.example.Day13;
+package org.example.assigment.yuki.PetInformationFileSystem.FileRepository;
+import org.example.assigment.yuki.PetInformationFileSystem.Model.Pet;
 import java.io.*;
 import java.util.ArrayList;
-
-import org.example.Day13.model.Student;
+import java.io.*;
 
 public abstract class GenericFileRepository<T> {
     public void saveToFile(String filePath, T[] objects){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));) {
             for(T object : objects){
-                writer.write(object.toString());//Felix,4,554345
+//                writer.write(object.toString());
+                writer.write(((Pet) object).toFileString());
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -16,7 +17,7 @@ public abstract class GenericFileRepository<T> {
         }
     }
 
-    public  ArrayList<T> loadFromFile(String filePath){
+    public ArrayList<T> loadFromFile(String filePath){
         ArrayList<T> objects = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(filePath));) {
             String line;
