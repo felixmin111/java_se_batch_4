@@ -16,7 +16,7 @@ public class ProductController {
         this.productService = productService;
         this.productView = productView;
         this.productView.saveButton.addActionListener(e -> {saveProduct();});
-        this.productView.tableModel.getSelectionModel(new TableModelActionListener());
+        this.productView.tableModel.addTableModelListener(new TableModelActionListener());
         loadProducts();
     }
     private void loadProducts() {
