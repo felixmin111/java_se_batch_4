@@ -2,14 +2,16 @@ package org.example.assigment.aung.petassignment.controller;
 
 import org.example.assigment.aung.petassignment.model.Cat;
 import org.example.assigment.aung.petassignment.model.Dog;
-import org.example.assigment.aung.petassignment.service.PetService;
+import org.example.assigment.aung.petassignment.service.CatService;
+import org.example.assigment.aung.petassignment.service.DogService;
 import org.example.assigment.aung.petassignment.view.MainMenu;
 
 import java.util.ArrayList;
 
 public class MainController {
     private MainMenu view = new MainMenu();
-    private PetService service = new PetService();
+    private CatService catService = new CatService();
+    private DogService dogService = new DogService();
 
     public void start() {
         while (true) {
@@ -37,11 +39,11 @@ public class MainController {
         switch (typeChoice) {
             case 1:
                 Cat newCat = view.getCatInput();
-                service.saveCat(newCat);
+                catService.saveCat(newCat);
                 break;
             case 2:
                 Dog newDog = view.getDogInput();
-                service.saveDog(newDog);
+                dogService.saveDog(newDog);
                 break;
             default:
                 System.out.println("Invalid pet type.");
@@ -49,8 +51,8 @@ public class MainController {
     }
 
     private void handleDisplay() {
-        ArrayList<Cat> loadedCats = service.getAllCats();
-        ArrayList<Dog> loadedDogs = service.getAllDogs();
+        ArrayList<Cat> loadedCats = catService.getAllCats();
+        ArrayList<Dog> loadedDogs = dogService.getAllDogs();
 
         view.displayPets(loadedCats, loadedDogs);
     }
