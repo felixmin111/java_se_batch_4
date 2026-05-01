@@ -1,4 +1,4 @@
-package org.example.Day15;
+package org.example.Day15.model;
 
 public class User {
     private String name;
