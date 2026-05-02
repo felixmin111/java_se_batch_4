@@ -1,59 +1,51 @@
 package org.example.assigment.aung.petassignment.controller;
 
-import org.example.assigment.aung.petassignment.model.Cat;
-import org.example.assigment.aung.petassignment.model.Dog;
 import org.example.assigment.aung.petassignment.service.CatService;
 import org.example.assigment.aung.petassignment.service.DogService;
-import org.example.assigment.aung.petassignment.view.MainMenu;
+import org.example.assigment.aung.petassignment.view.CatView;
+import org.example.assigment.aung.petassignment.view.DogView;
+import org.example.assigment.aung.petassignment.view.HomeView;
+import org.example.assigment.aung.petassignment.view.MainView;
 
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
 
 public class MainController {
-    private MainMenu view = new MainMenu();
-    private CatService catService = new CatService();
-    private DogService dogService = new DogService();
+    private MainView mainFrame;
 
-    public void start() {
-        while (true) {
-            int choice = view.displayMainMenu();
+    public MainController(MainView mainFrame) {
+        this.mainFrame = mainFrame;
 
-            switch (choice) {
-                case 1:
-                    handleInput();
-                    break;
-                case 2:
-                    handleDisplay();
-                    break;
-                case 3:
-                    System.out.println("Exiting the program...");
-                    return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-            }
-        }
+        mainFrame.catMenuItem.addActionListener(e -> showCatPage());
+        mainFrame.dogMenuItem.addActionListener(e -> showDogPage());
+        mainFrame.homeMenu.addMouseListener(new HomeMenuActionListener());
+
+        showHomePage();
     }
 
-    private void handleInput() {
-        int typeChoice = view.petTypeMenu();
-
-        switch (typeChoice) {
-            case 1:
-                Cat newCat = view.getCatInput();
-                catService.saveCat(newCat);
-                break;
-            case 2:
-                Dog newDog = view.getDogInput();
-                dogService.saveDog(newDog);
-                break;
-            default:
-                System.out.println("Invalid pet type.");
-        }
+    private void showHomePage() {
+        HomeView homeView = new HomeView();
+        mainFrame.setView(homeView.panel);
     }
 
-    private void handleDisplay() {
-        ArrayList<Cat> loadedCats = catService.getAllCats();
-        ArrayList<Dog> loadedDogs = dogService.getAllDogs();
+    private void showCatPage() {
+        CatView catView = new CatView();
+        CatService catService = new CatService();
+        new CatController(catService, catView);
+        mainFrame.setView(catView.panel);
+    }
 
-        view.displayPets(loadedCats, loadedDogs);
+    private void showDogPage() {
+        DogView dogView = new DogView();
+        DogService dogService = new DogService();
+        new DogController(dogService, dogView);
+        mainFrame.setView(dogView.panel);
+    }
+
+    public class HomeMenuActionListener extends MouseAdapter {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            showHomePage();
+        }
+
     }
 }
