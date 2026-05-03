@@ -1,28 +1,32 @@
 package org.example.assigment.lapyae.day13Pet.controller;
-import org.example.assigment.lapyae.day13Pet.service.Petservice;
-import org.example.assigment.lapyae.day13Pet.view.Mainmenu;
+
+import org.example.assigment.lapyae.day13Pet.service.CatService;
+import org.example.assigment.lapyae.day13Pet.service.DogService;
+import org.example.assigment.lapyae.day13Pet.view.*;
 
 public class MainController {
-    private Mainmenu view = new Mainmenu();
-    private Petservice service = new Petservice();
 
-    public void start() {
-        while (true) {
-            int choice = view.displayMainMenu();
-            if (choice == 1) handleInput();
-            else if (choice == 2) handleDisplay();
-            else if (choice == 3) break;
-        }
-    }
+    private final MainView mainFrame;
+    private final DogService dogService = new DogService();
+    private final CatService catService = new CatService();
 
-    private void handleInput() {
-        int type = view.petTypeMenu();
-        if (type == 1) service.addCat(view.getCatInput());
-        else if (type == 2) service.addDog(view.getDogInput());
-    }
+    public MainController(MainView mainFrame) {
+        this.mainFrame = mainFrame;
 
-    private void handleDisplay() {
+        mainFrame.homeMenuItem.addActionListener(e -> mainFrame.setView(new HomeView()));
 
-        view.displayPets(service.getCats(), service.getDogs());
+        mainFrame.dogMenuItem.addActionListener(e -> {
+            DogView dv = new DogView();
+            new DogController(dv, dogService);
+            mainFrame.setView(dv);
+        });
+
+        mainFrame.catMenuItem.addActionListener(e -> {
+            CatView cv = new CatView();
+            new CatController(cv, catService);
+            mainFrame.setView(cv);
+        });
+
+        mainFrame.setView(new HomeView());
     }
 }

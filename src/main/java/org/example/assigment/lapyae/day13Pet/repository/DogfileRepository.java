@@ -1,4 +1,4 @@
-package org.example.assigment.lapyae.day13Pet.data;
+package org.example.assigment.lapyae.day13Pet.repository;
 
 import org.example.assigment.lapyae.day13Pet.model.Dog;
 import org.example.assigment.lapyae.day13Pet.model.Pet;

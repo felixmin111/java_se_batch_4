@@ -13,6 +13,7 @@ public class Dog extends Pet {
     public String getBreed() {
         return breed;
     }
+
     public boolean isTrained() {
         return isTrained;
     }
@@ -32,4 +33,6 @@ public class Dog extends Pet {
                 "Breed: " + breed + "\n" +
                 "Trained: " + isTrained + "\n";
     }
+
+
 }

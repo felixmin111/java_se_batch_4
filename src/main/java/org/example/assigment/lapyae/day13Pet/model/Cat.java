@@ -11,6 +11,14 @@ public class Cat extends Pet {
         this.furLength = furLength;
     }
 
+    public boolean isIndoor() {
+        return isIndoor;
+    }
+
+    public FurLength getFurLength() {
+        return furLength;
+    }
+
     @Override
     public String toFileFormat() {
         return String.format("%s,%s,%d,%s,%s,%b,%s", getId(), getName(), getAge(), getType(), getColor(), isIndoor, furLength);
@@ -18,12 +26,6 @@ public class Cat extends Pet {
 
     @Override
     public String toString() {
-        return "[" + getType() + "]\n" +
-                "ID: " + getId() + "\n" +
-                "Name: " + getName() + "\n" +
-                "Age: " + getAge() + "\n" +
-                "Color: " + getColor() + "\n" +
-                "Indoor: " + isIndoor + "\n" +
-                "Fur: " + furLength.name() + "\n";
+        return "[" + getType() + "]\nID: " + getId() + "\nName: " + getName() + "\nAge: " + getAge() + "\n";
     }
 }
