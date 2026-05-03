@@ -44,6 +44,8 @@ public class ProductService {
     }
 
     public void updateProduct(Product product) {
-        products.set(products.indexOf(product), product);
+        int findIndex=products.indexOf(product);
+        System.out.println("findIndex--->"+findIndex);
+       products.set(products.indexOf(product), product);
     }
 }
