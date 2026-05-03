@@ -2,8 +2,10 @@ package org.example.assigment.yuki.PetInformationFileSystem.View;
 
 import org.example.assigment.yuki.PetInformationFileSystem.Model.Cat;
 import org.example.assigment.yuki.PetInformationFileSystem.Model.Dog;
+import org.example.assigment.yuki.PetInformationFileSystem.Model.Pet;
 import org.example.assigment.yuki.PetInformationFileSystem.Service.PetService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PetView {
@@ -19,7 +21,7 @@ public class PetView {
         this.service = service;
     }
 
-    public void inputPet(){
+    public Pet inputPet(){
         showPetTypeMenu();
         int typeChoice = sc.nextInt();
         sc.nextLine();
@@ -44,8 +46,9 @@ public class PetView {
             double furLength = sc.nextDouble(); sc.nextLine();
 
             Cat cat = new Cat(id, name, age, color, isIndoor, furLength);
-            service.saveCat(dataPath + "cat.txt", cat);
-            showMessage("Cat saved!");
+            return cat;
+//            service.saveCat(dataPath + "cat.txt", cat);
+
         }
 
         else if (typeChoice == 2){
@@ -56,24 +59,23 @@ public class PetView {
             boolean isTrained = sc.nextBoolean(); sc.nextLine();
 
             Dog dog = new Dog(id, name, age, color, breed, isTrained);
-            service.saveDog(dataPath + "dog.txt", dog);
-            showMessage("Dog saved!");
+            return dog;
+//            service.saveDog(dataPath + "dog.txt", dog);
+
         }
+
+        return null;
     }
 
-    public void displayPets(){
+    public void displayCats(List<Cat> cats){
         System.out.println("Cats:");
-//        service.readPets("cats.txt").forEach(System.out::println);
-        for(Cat cat : service.getCats(dataPath + "cat.txt")){
-            System.out.println(cat);
-        }
-
-        System.out.println("Dogs:");
-        for(Dog dog : service.getDogs(dataPath + "dog.txt")){
-            System.out.println(dog);
-        }
+        cats.forEach(System.out::println);
     }
 
+    public void displayDogs(List<Dog> dogs){
+        System.out.println("Dogs:");
+        dogs.forEach(System.out::println);
+    }
 
     public void showMenu(){
         System.out.println("Choose Options below:");
