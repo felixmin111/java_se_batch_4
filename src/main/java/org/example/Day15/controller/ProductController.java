@@ -12,6 +12,7 @@ public class ProductController {
         this.productView = productView;
         this.productView.saveButton.addActionListener(e -> {saveProduct();});
         this.productView.updateButton.addActionListener(e->{updateProduct();});
+        this.productView.deleteButton.addActionListener(e->{deleteProduct();});
         this.productView.table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 fillFormFromSelectedRow();
@@ -36,11 +37,10 @@ public class ProductController {
     }
     private void saveProduct() {
         System.out.println("Saving product");
-        int id=Integer.parseInt(productView.idField.getText());
         String name=productView.nameField.getText();
         double price=Double.parseDouble(productView.priceField.getText());
         int quantity=Integer.parseInt(productView.quantityField.getText());
-        Product product=new Product(id,name,price,quantity);
+        Product product=new Product(null,name,price,quantity);
         productService.save(product);
         loadProducts();
         cleanForm();
@@ -64,13 +64,19 @@ public class ProductController {
         productView.quantityField.setText(productView.tableModel.getValueAt(row, 3).toString());
     }
     private void updateProduct() {
-        System.out.println("Saving product");
+        System.out.println("Update product");
         int id=Integer.parseInt(productView.idField.getText());
         String name=productView.nameField.getText();
         double price=Double.parseDouble(productView.priceField.getText());
         int quantity=Integer.parseInt(productView.quantityField.getText());
         Product product=new Product(id,name,price,quantity);
         productService.updateProduct(product);
+        loadProducts();
+        cleanForm();
+    }
+    private void deleteProduct() {
+        int id=Integer.parseInt(productView.idField.getText());
+        productService.deleteProductById(id);
         loadProducts();
         cleanForm();
     }

@@ -34,6 +34,7 @@ public class ProductView {
 
         idField = new JTextField();
         idField.setBounds(190, 90, 160, 30);
+        idField.setEnabled(false);
         panel.add(idField);
 
         JLabel nameLabel = new JLabel("Product Name:");

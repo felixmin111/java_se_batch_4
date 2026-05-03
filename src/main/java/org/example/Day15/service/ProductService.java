@@ -1,12 +1,14 @@
 package org.example.Day15.service;
 
 import org.example.Day15.model.Product;
+import org.example.Day15.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
     private static List<Product> products = new ArrayList<>();
+    private ProductRepository repository;
 
     static {
         products.add(new Product(1, "Coffee", 2500, 10));
@@ -16,14 +18,16 @@ public class ProductService {
         products.add(new Product(5, "Tea", 1500, 20));
         products.add(new Product(6, "Cake", 3000, 5));
     }
+    public ProductService() {
+        this.repository = new ProductRepository();
+    }
 
     public List<Product> getAllProducts() {
-         return products;
-
+         return repository.findAll();
     }
 
     public void save(Product product) {
-        products.add(product);
+       repository.save(product);
     }
 
     public Product getProductById(int id) {
@@ -36,16 +40,10 @@ public class ProductService {
     }
 
     public void deleteProductById(int id) {
-        for (Product product : products) {
-            if(product.getId() == id) {
-                products.remove(product);
-            }
-        }
+        this.repository.deleteById(id);
     }
 
     public void updateProduct(Product product) {
-        int findIndex=products.indexOf(product);
-        System.out.println("findIndex--->"+findIndex);
-       products.set(products.indexOf(product), product);
+       repository.update(product);
     }
 }
