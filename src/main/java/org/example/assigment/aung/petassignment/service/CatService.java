@@ -1,21 +1,29 @@
 package org.example.assigment.aung.petassignment.service;
 
-import org.example.assigment.aung.petassignment.repository.CatFileRepository;
 import org.example.assigment.aung.petassignment.model.Cat;
-
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class CatService {
-    private CatFileRepository catRepo = new CatFileRepository();
+    private static List<Cat> cats = new ArrayList<>();
 
-    public void saveCat(Cat cat) {
-        ArrayList<Cat> catList = new ArrayList<>();
-        catList.add(cat);
-        catRepo.saveToFile("src/main/java/org/example/assigment/aung/petassignment/data/cat.txt", catList);
+    public List<Cat> getAllCats() {
+        return cats;
     }
 
-    public ArrayList<Cat> getAllCats() {
-        return catRepo.loadFromFile("src/main/java/org/example/assigment/aung/petassignment/data/cat.txt");
+    public void save(Cat cat) {
+        cats.add(cat);
+    }
+
+    public void deleteCatById(String id) {
+        for (Cat cat: cats) {
+            if (cat.getId()==(id)) {
+                cats.remove(cat);
+            }
+        }
+    }
+
+    public void updateCat(Cat updatedCat) {
+        cats.set(cats.indexOf(updatedCat), updatedCat);
     }
 }

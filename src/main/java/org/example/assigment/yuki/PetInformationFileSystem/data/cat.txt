@@ -1,1 +1,2 @@
-2,ww,1,Cat,brown,true,2.0
+4,molli,5,Cat,orange,true,4.0
+1,yaya,1,Cat,white,false,2.0

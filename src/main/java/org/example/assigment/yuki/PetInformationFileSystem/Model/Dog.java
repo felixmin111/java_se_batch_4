@@ -21,6 +21,13 @@ public class Dog extends Pet {
                 "\n---------------------";
     }
 
+    public String getBreed() {
+        return breed;
+    }
+    public boolean isTrained() {
+        return isTrained;
+    }
+
     @Override
     public String toFileString() {
         return super.toFileString() + "," + breed + "," + isTrained;

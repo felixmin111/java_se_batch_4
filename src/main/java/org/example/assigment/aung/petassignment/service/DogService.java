@@ -1,20 +1,29 @@
 package org.example.assigment.aung.petassignment.service;
 
-import org.example.assigment.aung.petassignment.repository.DogFileRepository;
 import org.example.assigment.aung.petassignment.model.Dog;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class DogService {
-    private DogFileRepository dogRepo = new DogFileRepository();
+    private static List<Dog> dogs = new ArrayList<>();
 
-    public void saveDog(Dog dog) {
-        ArrayList<Dog> dogList = new ArrayList<>();
-        dogList.add(dog);
-        dogRepo.saveToFile("src/main/java/org/example/assigment/aung/petassignment/data/dog.txt", dogList);
+    public List<Dog> getAllDogs() {
+        return dogs;
     }
 
-    public ArrayList<Dog> getAllDogs() {
-        return dogRepo.loadFromFile("src/main/java/org/example/assigment/aung/petassignment/data/dog.txt");
+    public void save(Dog dog) {
+        dogs.add(dog);
+    }
+
+    public void deleteDogById(String id) {
+        for (Dog dog : dogs) {
+            if (dog.getId() == (id)) {
+                dogs.remove(dog);
+            }
+        }
+    }
+
+    public void updateDog(Dog updatedDog) {
+        dogs.set(dogs.indexOf(updatedDog), updatedDog);
     }
 }
