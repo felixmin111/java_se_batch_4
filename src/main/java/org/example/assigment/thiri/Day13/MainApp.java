@@ -1,10 +1,12 @@
 package org.example.assigment.thiri.Day13;
 
-import org.example.assigment.thiri.Day13.controller.PetController;
+import org.example.assigment.thiri.Day13.controller.MainController;
+import org.example.assigment.thiri.Day13.view.MainView;
 
 public class MainApp {
     public static void main(String[] args) {
-        PetController controller = new PetController();
-         controller.start();
+        MainView mainView = new MainView();
+        new MainController(mainView);
+        mainView.show();
     }
 }
