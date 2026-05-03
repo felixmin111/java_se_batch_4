@@ -4,11 +4,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class CatView {
+public class DogView {
 
     public JPanel panel;
 
-    public JTextField idField, nameField, ageField, colorField, furField;
+    public JTextField idField, nameField, ageField, colorField, breedField;
     public JButton saveButton;
     public JButton updateButton;
     public JButton deleteButton;
@@ -16,11 +16,11 @@ public class CatView {
     public JTable table;
     public DefaultTableModel tableModel;
 
-    public CatView(){
+    public DogView(){
         panel = new JPanel();
         panel.setLayout(null);
 
-        JLabel title = new JLabel("Cat Management", SwingConstants.CENTER);
+        JLabel title = new JLabel("Dog Management", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 26));
         title.setBounds(50, 20, 650, 40);
         panel.add(title);
@@ -55,12 +55,12 @@ public class CatView {
         panel.add(colorField);
 
 
-        JLabel furLabel = new JLabel("Fur Length:");
-        furLabel.setBounds(70, 260, 100, 30);
-        panel.add(furLabel);
-        furField = new JTextField();
-        furField.setBounds(150,260,150,30);
-        panel.add(furField);
+        JLabel breedLabel = new JLabel("Dog's Breed:");
+        breedLabel.setBounds(70, 260, 100, 30);
+        panel.add(breedLabel);
+        breedField = new JTextField();
+        breedField.setBounds(150,260,150,30);
+        panel.add(breedField);
 
         saveButton = new JButton("Save");
         saveButton.setBounds(360,180,100,30);

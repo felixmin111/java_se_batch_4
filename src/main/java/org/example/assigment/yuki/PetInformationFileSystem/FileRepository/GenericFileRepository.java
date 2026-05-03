@@ -6,7 +6,7 @@ import java.io.*;
 
 public abstract class GenericFileRepository<T> {
     public void saveToFile(String filePath, T[] objects){
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true));) {
             for(T object : objects){
 //                writer.write(object.toString());
                 writer.write(((Pet) object).toFileString());

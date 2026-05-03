@@ -12,6 +12,16 @@ public class Cat extends Pet{
         this.furLength = furLength;
     }
 
+    public double getFurLength() {
+        return furLength;
+
+    }
+
+    public boolean isIndoor() {
+        return isIndoor;
+
+    }
+
 
     @Override
     public String toFileString() {
@@ -26,4 +36,6 @@ public class Cat extends Pet{
                 "\nFur Length: " + furLength +
                 "\n---------------------";
     }
+
+
 }

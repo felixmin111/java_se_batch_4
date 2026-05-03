@@ -3,23 +3,12 @@ package org.example.assigment.yuki.PetInformationFileSystem.View;
 import org.example.assigment.yuki.PetInformationFileSystem.Model.Cat;
 import org.example.assigment.yuki.PetInformationFileSystem.Model.Dog;
 import org.example.assigment.yuki.PetInformationFileSystem.Model.Pet;
-import org.example.assigment.yuki.PetInformationFileSystem.Service.PetService;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class PetView {
+public class PetMenu {
     Scanner sc = new Scanner(System.in);
-    private PetService service;
-    private String dataPath;
-
-    public void setDataPath(String dataPath) {
-        this.dataPath = dataPath;
-    }
-
-    public PetView(PetService service) {
-        this.service = service;
-    }
 
     public Pet inputPet(){
         showPetTypeMenu();
@@ -47,11 +36,8 @@ public class PetView {
 
             Cat cat = new Cat(id, name, age, color, isIndoor, furLength);
             return cat;
-//            service.saveCat(dataPath + "cat.txt", cat);
 
-        }
-
-        else if (typeChoice == 2){
+        } else if (typeChoice == 2){
             System.out.print("Enter breed: ");
             String breed = sc.nextLine();
 
@@ -60,10 +46,7 @@ public class PetView {
 
             Dog dog = new Dog(id, name, age, color, breed, isTrained);
             return dog;
-//            service.saveDog(dataPath + "dog.txt", dog);
-
         }
-
         return null;
     }
 
