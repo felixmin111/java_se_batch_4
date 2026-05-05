@@ -16,10 +16,12 @@ public class DogService {
     public void save(Dog dog){
         repo.save(dog);
     }
-    public void update(Dog dog){
+    public void updateDog(Dog dog){
         repo.update(dog);
     }
-    public void deleteById(String id) {
+    public void deleteDogById(String id) {
         repo.deleteById(id);
     }
+
+
 }

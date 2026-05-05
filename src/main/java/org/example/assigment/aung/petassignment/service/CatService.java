@@ -20,11 +20,13 @@ public class CatService {
         repo.save(cat);
     }
 
-    public void update(Cat cat) {
+    public void updateCat(Cat cat) {
         repo.update(cat);
     }
 
-    public void deleteById(String id) {
+    public void deleteCatById(String id) {
         repo.deleteById(id);
     }
+
+
 }
