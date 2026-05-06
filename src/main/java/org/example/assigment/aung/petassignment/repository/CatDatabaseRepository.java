@@ -3,87 +3,64 @@ package org.example.assigment.aung.petassignment.repository;
 import org.example.assigment.aung.petassignment.model.Cat;
 import org.example.assigment.aung.petassignment.model.Pet;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class CatDatabaseRepository {
-    public List<Cat> findAll() {
-        List<Cat> cats = new ArrayList<>();
-        String sql = "select id, name, age, type, color, isIndoor, furlength from cats";
+public class CatDatabaseRepository extends AbstractPetRepository<Cat> {
 
-        try (Connection conn = DBConnection_pet.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                Cat cat = new Cat(
-                        rs.getString("id"),
-                        rs.getString("name"),
-                        rs.getInt("age"),
-                        Pet.Type.valueOf(rs.getString("type")),
-                        rs.getString("color"),
-                        rs.getBoolean("isIndoor"),
-                        Cat.Furlength.valueOf(rs.getString("furlength"))
-                );
-                cats.add(cat);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return cats;
+    @Override
+    protected String getInsertSql() {
+        return "insert into cats(id, name, age, type, color, isIndoor, furlength) values(?,?,?,?,?,?,?)";
     }
 
-    public void save(Cat cat) {
-        String sql = "insert into cats (id, name, age, type, color, isIndoor, furlength) values (?, ?, ?, ?, ?, ?, ?)";
-
-        try (Connection conn = DBConnection_pet.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, cat.getId());
-            ps.setString(2, cat.getName());
-            ps.setInt(3, cat.getAge());
-            ps.setString(4, cat.getType().name());
-            ps.setString(5, cat.getColor());
-            ps.setBoolean(6, cat.isIndoor());
-            ps.setString(7, cat.getFurlength().name());
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected void setInsertParam(PreparedStatement preparedStatement, Cat cat) throws SQLException {
+        preparedStatement.setString(1, cat.getId());
+        preparedStatement.setString(2, cat.getName());
+        preparedStatement.setInt(3, cat.getAge());
+        preparedStatement.setString(4, cat.getType().name());
+        preparedStatement.setString(5, cat.getColor());
+        preparedStatement.setBoolean(6, cat.isIndoor());
+        preparedStatement.setString(7, cat.getFurlength().name());
     }
 
-    public void update(Cat cat) {
-        String sql = "update cats set name=?, age=?, type=?, color=?, isIndoor=?, furlength=? where id=?";
-
-        try (Connection conn = DBConnection_pet.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, cat.getName());
-            ps.setInt(2, cat.getAge());
-            ps.setString(3, cat.getType().name());
-            ps.setString(4, cat.getColor());
-            ps.setBoolean(5, cat.isIndoor());
-            ps.setString(6, cat.getFurlength().name());
-            ps.setString(7, cat.getId());
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected String getFindAllSql() {
+        return "select id, name, age, type, color, isIndoor, furlength from cats";
     }
 
-    public void deleteById(String id) {
-        String sql = "delete from cats where id=?";
+    @Override
+    protected String getUpdateSql() {
+        return "update cats set name=?, age=?, type=?, color=?, isIndoor=?, furlength=? where id=?";
+    }
 
-        try (Connection conn = DBConnection_pet.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
+    @Override
+    protected void setUpdateParam(PreparedStatement preparedStatement, Cat cat) throws SQLException {
+        preparedStatement.setString(1, cat.getName());
+        preparedStatement.setInt(2, cat.getAge());
+        preparedStatement.setString(3, cat.getType().name());
+        preparedStatement.setString(4, cat.getColor());
+        preparedStatement.setBoolean(5, cat.isIndoor());
+        preparedStatement.setString(6, cat.getFurlength().name());
+        preparedStatement.setString(7, cat.getId());
+    }
 
-            ps.setString(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected String getDeleteSql() {
+        return "delete from cats where id=?";
+    }
+
+    @Override
+    protected Cat mapRow(ResultSet rs) throws SQLException {
+        return new Cat(
+                rs.getString("id"),
+                rs.getString("name"),
+                rs.getInt("age"),
+                Pet.Type.valueOf(rs.getString("type")),
+                rs.getString("color"),
+                rs.getBoolean("isIndoor"),
+                Cat.Furlength.valueOf(rs.getString("furlength"))
+        );
     }
 }

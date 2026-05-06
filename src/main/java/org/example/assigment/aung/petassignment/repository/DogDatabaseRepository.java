@@ -3,81 +3,64 @@ package org.example.assigment.aung.petassignment.repository;
 import org.example.assigment.aung.petassignment.model.Dog;
 import org.example.assigment.aung.petassignment.model.Pet;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class DogDatabaseRepository {
-    public List<Dog> findAll(){
-        List<Dog> dogs = new ArrayList<>();
-        String sql = "select id, name, age, type, color, breed, isTrained from dogs";
+public class DogDatabaseRepository extends AbstractPetRepository<Dog> {
 
-        try (Connection conn = DBConnection_pet.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery()){
-            while (rs.next()) {
-                Dog dog = new Dog(
-                    rs.getString("id"),
-                    rs.getString("name"),
-                    rs.getInt("age"),
-                    Pet.Type.valueOf(rs.getString("type")),
-                    rs.getString("color"),
-                    rs.getString("breed"),
-                    rs.getBoolean("isTrained")
-                );
-                dogs.add(dog);
-            }
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return dogs;
-    }
-    
-
-    public void save(Dog dog){
-        String sql = "insert into dogs(id,name,age,type,color,breed,isTrained) values(?,?,?,?,?,?,?)";
-        try(Connection conn = DBConnection_pet.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setString(1, dog.getId());
-            ps.setString(2, dog.getName());
-            ps.setInt(3, dog.getAge());
-            ps.setString(4, dog.getType().name());
-            ps.setString(5, dog.getColor());
-            ps.setString(6, dog.getBreed());
-            ps.setBoolean(7, dog.isTrained());
-
-            ps.executeUpdate();
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected String getInsertSql() {
+        return "insert into dogs(id, name, age, type, color, breed, isTrained) values(?,?,?,?,?,?,?)";
     }
 
-    public void update(Dog dog){
-        String sql = "update dogs set name=?, age=?, type=?, color=?, breed=?, isTrained=? where id=?";
-        try(Connection conn = DBConnection_pet.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setString(1, dog.getName());
-            ps.setInt(2, dog.getAge());
-            ps.setString(3, dog.getType().name());
-            ps.setString(4, dog.getColor());
-            ps.setString(5, dog.getBreed());
-            ps.setBoolean(6, dog.isTrained());
-            ps.setString(7, dog.getId());
-
-            ps.executeUpdate();
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected void setInsertParam(PreparedStatement preparedStatement, Dog dog) throws SQLException {
+        preparedStatement.setString(1, dog.getId());
+        preparedStatement.setString(2, dog.getName());
+        preparedStatement.setInt(3, dog.getAge());
+        preparedStatement.setString(4, dog.getType().name());
+        preparedStatement.setString(5, dog.getColor());
+        preparedStatement.setString(6, dog.getBreed());
+        preparedStatement.setBoolean(7, dog.isTrained());
     }
 
-    public void deleteById(String id) {
-        String sql = "delete from dogs where id=?";
-        try(Connection conn = DBConnection_pet.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setString(1, id);
-            ps.executeUpdate();
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected String getFindAllSql() {
+        return "select id, name, age, type, color, breed, isTrained from dogs";
+    }
+
+    @Override
+    protected String getUpdateSql() {
+        return "update dogs set name=?, age=?, type=?, color=?, breed=?, isTrained=? where id=?";
+    }
+
+    @Override
+    protected void setUpdateParam(PreparedStatement preparedStatement, Dog dog) throws SQLException {
+        preparedStatement.setString(1, dog.getName());
+        preparedStatement.setInt(2, dog.getAge());
+        preparedStatement.setString(3, dog.getType().name());
+        preparedStatement.setString(4, dog.getColor());
+        preparedStatement.setString(5, dog.getBreed());
+        preparedStatement.setBoolean(6, dog.isTrained());
+        preparedStatement.setString(7, dog.getId());
+    }
+
+    @Override
+    protected String getDeleteSql() {
+        return "delete from dogs where id=?";
+    }
+
+    @Override
+    protected Dog mapRow(ResultSet rs) throws SQLException {
+        return new Dog(
+                rs.getString("id"),
+                rs.getString("name"),
+                rs.getInt("age"),
+                Pet.Type.valueOf(rs.getString("type")),
+                rs.getString("color"),
+                rs.getString("breed"),
+                rs.getBoolean("isTrained")
+        );
     }
 }
