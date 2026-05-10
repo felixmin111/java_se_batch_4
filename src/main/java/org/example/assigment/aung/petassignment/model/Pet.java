@@ -10,7 +10,6 @@ public abstract class Pet {
     private String name;
 
     @NotValidAge(message = "Age must be between 0 and 30!")
-    @EmptyField(message = "Age is required and cannot be empty!")
     private int age;
 
     public enum Type{

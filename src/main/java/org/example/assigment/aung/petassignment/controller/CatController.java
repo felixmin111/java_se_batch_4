@@ -1,8 +1,11 @@
 package org.example.assigment.aung.petassignment.controller;
 
+import javax.swing.JOptionPane;
+
 import org.example.assigment.aung.petassignment.model.Cat;
 import org.example.assigment.aung.petassignment.model.Pet;
 import org.example.assigment.aung.petassignment.service.CatService;
+import org.example.assigment.aung.petassignment.validator.PetValidator;
 import org.example.assigment.aung.petassignment.view.CatView;
 
 import java.util.List;
@@ -45,35 +48,57 @@ public class CatController {
     }
 
     private void saveCat() {
-        String name = catView.nameField.getText();
-        int age = Integer.parseInt(catView.ageField.getText());
-        String color = catView.colorField.getText();
-        boolean isIndoor = catView.isIndoorBox.isSelected();
-        String furString = catView.furLengthBox.getSelectedItem().toString().toUpperCase();
-        Cat.Furlength furLength = Cat.Furlength.valueOf(furString);
+        try {
+            System.out.println("Saving Cat");
+            String name = catView.nameField.getText();
+            String ageText = catView.ageField.getText();
+            int age = ageText.isEmpty() ? -1 : Integer.parseInt(ageText);
+            String color = catView.colorField.getText();
+            boolean isIndoor = catView.isIndoorBox.isSelected();
+            String furString = catView.furLengthBox.getSelectedItem().toString().toUpperCase();
+            Cat.Furlength furLength = Cat.Furlength.valueOf(furString);
 
-        Cat cat = new Cat(0, name, age, Pet.Type.CAT, color, isIndoor, furLength);
-        catService.save(cat);
-        loadCats();
-        cleanForm();
+            Cat cat = new Cat(0, name, age, Pet.Type.CAT, color, isIndoor, furLength);
+            PetValidator.validate(cat);
+            catService.save(cat);
+            loadCats();
+            cleanForm();
+            JOptionPane.showMessageDialog(catView.panel, "Cat saved successfully");
+        } catch (RuntimeException e) {
+            JOptionPane.showMessageDialog(catView.panel, e.getMessage(), "Validation error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void updateCat() {
-        int id = Integer.parseInt(catView.idField.getText());
-        String name = catView.nameField.getText();
-        int age = Integer.parseInt(catView.ageField.getText());
-        String color = catView.colorField.getText();
-        boolean isIndoor = catView.isIndoorBox.isSelected();
-        String furString = catView.furLengthBox.getSelectedItem().toString().toUpperCase();
-        Cat.Furlength furLength = Cat.Furlength.valueOf(furString);
-
-        Cat cat = new Cat(id, name, age, Pet.Type.CAT, color, isIndoor, furLength);
-        catService.updateCat(cat);
-        loadCats();
-        cleanForm();
+        if (catView.idField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(catView.panel, "Please select a cat from the table first!", "Error", JOptionPane.WARNING_MESSAGE);
+        return;
+        }
+        try {
+            int id = Integer.parseInt(catView.idField.getText());
+            String name = catView.nameField.getText();
+            String ageText = catView.ageField.getText();
+            int age = ageText.isEmpty() ? -1 : Integer.parseInt(ageText);
+            String color = catView.colorField.getText();
+            boolean isIndoor = catView.isIndoorBox.isSelected();
+            String furString = catView.furLengthBox.getSelectedItem().toString().toUpperCase();
+            Cat.Furlength furLength = Cat.Furlength.valueOf(furString);
+            Cat cat = new Cat(id, name, age, Pet.Type.CAT, color, isIndoor, furLength);
+            PetValidator.validate(cat);
+            catService.updateCat(cat);
+            loadCats();
+            cleanForm();
+            JOptionPane.showMessageDialog(catView.panel, "Cat updated successfully");
+        } catch (RuntimeException e) {
+            JOptionPane.showMessageDialog(catView.panel, e.getMessage(), "Validation error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void deleteCat() {
+        if (catView.idField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(catView.panel, "Please select a cat from the table first!", "Error", JOptionPane.WARNING_MESSAGE);
+        return;
+        }
         int id = Integer.parseInt(catView.idField.getText());
         catService.deleteCatById(id);
         loadCats();

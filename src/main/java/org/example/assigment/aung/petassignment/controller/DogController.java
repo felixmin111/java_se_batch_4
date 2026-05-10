@@ -4,7 +4,8 @@ import org.example.assigment.aung.petassignment.model.Dog;
 import org.example.assigment.aung.petassignment.model.Pet;
 import org.example.assigment.aung.petassignment.service.DogService;
 import org.example.assigment.aung.petassignment.view.DogView;
-
+import javax.swing.JOptionPane;
+import org.example.assigment.aung.petassignment.validator.PetValidator;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class DogController {
         this.dogView.deleteButton.addActionListener(e -> deleteDog());
 
         this.dogView.idField.setEnabled(false);
-        
+
         this.dogView.table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 populateFormFromTable();
@@ -34,7 +35,7 @@ public class DogController {
         dogView.tableModel.setRowCount(0);
         List<Dog> dogs = dogService.getAllDogs();
         for (Dog dog : dogs) {
-            dogView.tableModel.addRow(new Object[]{
+            dogView.tableModel.addRow(new Object[] {
                     dog.getId(),
                     dog.getName(),
                     dog.getAge(),
@@ -46,31 +47,56 @@ public class DogController {
     }
 
     private void saveDog() {
-        String name = dogView.nameField.getText();
-        int age = Integer.parseInt(dogView.ageField.getText());
-        String color = dogView.colorField.getText();
-        String breed = dogView.breedField.getText();
-        boolean isTrained = dogView.isTrainedBox.isSelected();
-        Dog dog = new Dog(0, name, age, Pet.Type.DOG, color, breed, isTrained);
-        dogService.save(dog);
-        loadDogs();
-        cleanForm();
+        try {
+            String name = dogView.nameField.getText();
+            String ageText = dogView.ageField.getText();
+            int age = ageText.isEmpty() ? -1 : Integer.parseInt(ageText);
+            String color = dogView.colorField.getText();
+            String breed = dogView.breedField.getText();
+            boolean isTrained = dogView.isTrainedBox.isSelected();
+            Dog dog = new Dog(0, name, age, Pet.Type.DOG, color, breed, isTrained);
+            PetValidator.validate(dog);
+            dogService.save(dog);
+            loadDogs();
+            cleanForm();
+            JOptionPane.showMessageDialog(dogView.panel, "Dog saved successfully");
+        } catch (RuntimeException e) {
+            JOptionPane.showMessageDialog(dogView.panel, e.getMessage(), "Validation error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     private void updateDog() {
-        int id = Integer.parseInt(dogView.idField.getText());
-        String name = dogView.nameField.getText();
-        int age = Integer.parseInt(dogView.ageField.getText());
-        String color = dogView.colorField.getText();
-        String breed = dogView.breedField.getText();
-        boolean isTrained = dogView.isTrainedBox.isSelected();
-        Dog dog = new Dog(id, name, age, Pet.Type.DOG, color, breed, isTrained);
-        dogService.updateDog(dog);
-        loadDogs();
-        cleanForm();
+        if (dogView.idField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(dogView.panel, "Please select a cat from the table first!", "Error",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        try {
+            int id = Integer.parseInt(dogView.idField.getText());
+            String name = dogView.nameField.getText();
+            String ageText = dogView.ageField.getText();
+            int age = ageText.isEmpty() ? -1 : Integer.parseInt(ageText);
+            String color = dogView.colorField.getText();
+            String breed = dogView.breedField.getText();
+            boolean isTrained = dogView.isTrainedBox.isSelected();
+            Dog dog = new Dog(id, name, age, Pet.Type.DOG, color, breed, isTrained);
+            PetValidator.validate(dog);
+            dogService.updateDog(dog);
+            loadDogs();
+            cleanForm();
+            JOptionPane.showMessageDialog(dogView.panel, "Dog updated successfully");
+        } catch (RuntimeException e) {
+            JOptionPane.showMessageDialog(dogView.panel, e.getMessage(), "Validation error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void deleteDog() {
+        if (dogView.idField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(dogView.panel, "Please select a dog from the table first!", "Error",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         int id = Integer.parseInt(dogView.idField.getText());
         dogService.deleteDogById(id);
         loadDogs();
