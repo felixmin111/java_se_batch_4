@@ -1,5 +1,8 @@
 package org.example.assigment.thiri.Day13.model;
 
+import org.example.assigment.thiri.Day13.annotation.NonNegativeField;
+import org.example.assigment.thiri.Day13.annotation.NotNullField;
+
 public class Pet {
 
 
@@ -21,9 +24,15 @@ public class Pet {
         }
     }
 
-    private int id;
+    private Integer id;
+    @NotNullField(message = "Pet name is required!")
     private String name;
+
+    @NotNullField(message = "Age is required!")
+    @NonNegativeField(message = "Age must be 0 or older.")
     private int age;
+
+    @NotNullField(message = "Please specify a color.")
     private String color;
     private final PetType type;
 

@@ -37,6 +37,7 @@ public class MainView {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
+
     public void show(){
         frame.setVisible(true);
     }
