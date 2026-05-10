@@ -43,7 +43,7 @@ public class CatDBRepo extends AbstractpetRepository<Cat> {
         ps.setString(4, cat.getColor());
         ps.setBoolean(5, cat.isIndoor());
         ps.setString(6, cat.getFurLength().name());
-        ps.setString(7, cat.getId());
+        ps.setInt(7, Integer.parseInt(cat.getId()));
     }
 
     @Override

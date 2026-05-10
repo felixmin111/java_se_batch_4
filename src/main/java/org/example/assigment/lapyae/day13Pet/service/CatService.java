@@ -18,4 +18,8 @@ public class CatService {
     public void removeCat(String id) {
         repo.deleteById(id);
     }
+
+    public void updateCat(Cat cat) {
+        repo.update(cat);
+    }
 }

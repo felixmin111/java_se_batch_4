@@ -40,7 +40,7 @@ public class DogDBRepo extends AbstractpetRepository<Dog> {
         ps.setString(4, dog.getColor());
         ps.setString(5, dog.getBreed());
         ps.setBoolean(6, dog.isTrained());
-        ps.setString(7, dog.getId());
+        ps.setInt(7, Integer.parseInt(dog.getId()));
     }
 
     @Override
