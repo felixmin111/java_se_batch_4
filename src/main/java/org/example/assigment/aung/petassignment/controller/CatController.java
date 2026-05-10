@@ -19,7 +19,7 @@ public class CatController {
         this.catView.updateButton.addActionListener(e -> updateCat());
         this.catView.deleteButton.addActionListener(e -> deleteCat());
 
-        this.catView.idField.setEditable(false);
+        this.catView.idField.setEnabled(false);
 
         this.catView.table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {

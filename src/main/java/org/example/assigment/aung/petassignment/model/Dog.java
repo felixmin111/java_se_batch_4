@@ -1,6 +1,10 @@
 package org.example.assigment.aung.petassignment.model;
 
+import org.example.assigment.aung.petassignment.annotation.EmptyField;
+
 public class Dog extends Pet {
+
+    @EmptyField(message = "Breed is required and cannot be empty!")
     private String breed;
     private boolean isTrained;
 

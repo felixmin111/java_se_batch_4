@@ -13,6 +13,8 @@ public class Cat extends Pet{
             return label;
         }
     }
+
+
     private Furlength furlength;
 
     public Cat(int id, String name, int age, Type type, String color,boolean isIndoor, Furlength furlength ) {

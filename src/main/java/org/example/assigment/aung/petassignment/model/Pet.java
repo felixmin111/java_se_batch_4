@@ -1,9 +1,18 @@
 package org.example.assigment.aung.petassignment.model;
+import org.example.assigment.aung.petassignment.annotation.EmptyField;
+import org.example.assigment.aung.petassignment.annotation.NotValidAge;
 
 public abstract class Pet {
+
     private int id;
+    
+    @EmptyField(message = "Name is required and cannot be empty!")
     private String name;
+
+    @NotValidAge(message = "Age must be between 0 and 30!")
+    @EmptyField(message = "Age is required and cannot be empty!")
     private int age;
+
     public enum Type{
         DOG("Dog"), CAT("Cat");
 
@@ -18,6 +27,8 @@ public abstract class Pet {
     }
 
     private Type type;
+
+    @EmptyField(message = "Color is required and cannot be empty!")
     private String color;
 
 

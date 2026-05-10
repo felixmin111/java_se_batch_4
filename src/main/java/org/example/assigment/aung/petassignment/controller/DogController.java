@@ -20,7 +20,7 @@ public class DogController {
         this.dogView.updateButton.addActionListener(e -> updateDog());
         this.dogView.deleteButton.addActionListener(e -> deleteDog());
 
-        this.dogView.idField.setEditable(false);
+        this.dogView.idField.setEnabled(false);
         
         this.dogView.table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {

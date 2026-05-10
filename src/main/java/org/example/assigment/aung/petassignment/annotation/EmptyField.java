@@ -1,4 +1,4 @@
-package org.example.Day17.annotation;
+package org.example.assigment.aung.petassignment.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,8 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-
-public @interface NonNegativeField {
-    String message() default "Field must be non-negative number";
-
+public @interface EmptyField {
+    String message() default "Field should not be empty";
 }
