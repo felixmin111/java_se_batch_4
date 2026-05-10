@@ -35,7 +35,7 @@ public class MainMenu {
         System.out.println("<<<Cat Data Registration>>>");
 
         System.out.print("Enter id: ");
-        String id = scanner.nextLine();
+        int id = scanner.nextInt();
 
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
@@ -64,7 +64,7 @@ public class MainMenu {
         System.out.println("<<<Dog Data Registration>>>");
 
         System.out.print("Enter id: ");
-        String id = scanner.nextLine();
+        int id = scanner.nextInt();
 
         System.out.print("Enter name: ");
         String name = scanner.nextLine();

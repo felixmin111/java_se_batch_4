@@ -1,7 +1,7 @@
 package org.example.assigment.aung.petassignment.model;
 
 public abstract class Pet {
-    private String id;
+    private int id;
     private String name;
     private int age;
     public enum Type{
@@ -22,7 +22,7 @@ public abstract class Pet {
 
 
 
-    public Pet(String id, String name, int age, Type type, String color) {
+    public Pet(int id, String name, int age, Type type, String color) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -32,11 +32,11 @@ public abstract class Pet {
 
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

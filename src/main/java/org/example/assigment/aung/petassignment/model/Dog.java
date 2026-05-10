@@ -20,7 +20,7 @@ public class Dog extends Pet {
         this.isTrained = isTrained;
     }
 
-    public Dog(String id, String name,int age, Type type, String color, String breed, boolean isTrained) {
+    public Dog(int id, String name,int age, Type type, String color, String breed, boolean isTrained) {
         super(id, name, age, type, color);
         this.breed = breed;
         this.isTrained = isTrained;

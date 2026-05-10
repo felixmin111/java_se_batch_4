@@ -15,7 +15,7 @@ public class Cat extends Pet{
     }
     private Furlength furlength;
 
-    public Cat(String id, String name, int age, Type type, String color,boolean isIndoor, Furlength furlength ) {
+    public Cat(int id, String name, int age, Type type, String color,boolean isIndoor, Furlength furlength ) {
         super(id, name, age, type, color);
         this.isIndoor = isIndoor;
         this.furlength = furlength;

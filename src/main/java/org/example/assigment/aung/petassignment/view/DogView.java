@@ -36,6 +36,7 @@ public class DogView {
 
         idField = new JTextField();
         idField.setBounds(190, 90, 160, 30);
+        idField.setBackground(Color.LIGHT_GRAY);
         panel.add(idField);
 
         JLabel nameLabel = new JLabel("Name:");

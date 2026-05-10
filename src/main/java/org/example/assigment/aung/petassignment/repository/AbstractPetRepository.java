@@ -18,6 +18,8 @@ public abstract class AbstractPetRepository<T> {
     
     protected abstract T mapRow(ResultSet rs) throws SQLException;
 
+    protected abstract void setGenerateID(ResultSet rs, T t) throws SQLException;
+
     public List<T> findAll() {
         List<T> list = new ArrayList<>();
         String sql = getFindAllSql();
@@ -37,10 +39,15 @@ public abstract class AbstractPetRepository<T> {
     public void save(T t) {
         String sql = getInsertSql();
         try (Connection conn = DBConnection_pet.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             
             setInsertParam(ps, t);
             ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()){
+                setGenerateID(rs,t);
+            }
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,12 +67,12 @@ public abstract class AbstractPetRepository<T> {
         }
     }
 
-    public void deleteById(String id) {
+    public void deleteById(int id) {
         String sql = getDeleteSql();
         try (Connection conn = DBConnection_pet.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)) {
             
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ps.executeUpdate();
 
         } catch (SQLException e) {

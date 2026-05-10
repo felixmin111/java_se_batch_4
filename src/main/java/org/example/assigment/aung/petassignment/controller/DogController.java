@@ -5,8 +5,7 @@ import org.example.assigment.aung.petassignment.model.Pet;
 import org.example.assigment.aung.petassignment.service.DogService;
 import org.example.assigment.aung.petassignment.view.DogView;
 
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+
 import java.util.List;
 
 public class DogController {
@@ -20,8 +19,14 @@ public class DogController {
         this.dogView.saveButton.addActionListener(e -> saveDog());
         this.dogView.updateButton.addActionListener(e -> updateDog());
         this.dogView.deleteButton.addActionListener(e -> deleteDog());
+
+        this.dogView.idField.setEditable(false);
         
-        this.dogView.tableModel.addTableModelListener(new TableModelActionListener());
+        this.dogView.table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                populateFormFromTable();
+            }
+        });
         loadDogs();
     }
 
@@ -41,20 +46,19 @@ public class DogController {
     }
 
     private void saveDog() {
-        String id = dogView.idField.getText();
         String name = dogView.nameField.getText();
         int age = Integer.parseInt(dogView.ageField.getText());
         String color = dogView.colorField.getText();
         String breed = dogView.breedField.getText();
         boolean isTrained = dogView.isTrainedBox.isSelected();
-        Dog dog = new Dog(id, name, age, Pet.Type.DOG, color, breed, isTrained);
+        Dog dog = new Dog(0, name, age, Pet.Type.DOG, color, breed, isTrained);
         dogService.save(dog);
         loadDogs();
         cleanForm();
     }
 
     private void updateDog() {
-        String id = dogView.idField.getText();
+        int id = Integer.parseInt(dogView.idField.getText());
         String name = dogView.nameField.getText();
         int age = Integer.parseInt(dogView.ageField.getText());
         String color = dogView.colorField.getText();
@@ -67,7 +71,7 @@ public class DogController {
     }
 
     private void deleteDog() {
-        String id = dogView.idField.getText();
+        int id = Integer.parseInt(dogView.idField.getText());
         dogService.deleteDogById(id);
         loadDogs();
         cleanForm();
@@ -82,19 +86,16 @@ public class DogController {
         dogView.isTrainedBox.setSelected(false);
     }
 
-    public class TableModelActionListener implements TableModelListener {
-        @Override
-        public void tableChanged(TableModelEvent e) {
-            int row = e.getFirstRow();
-            if (row < 0 || row >= dogView.tableModel.getRowCount()) {
-                return;
-            }
-            dogView.idField.setText(dogView.tableModel.getValueAt(row, 0).toString());
-            dogView.nameField.setText(dogView.tableModel.getValueAt(row, 1).toString());
-            dogView.ageField.setText(dogView.tableModel.getValueAt(row, 2).toString());
-            dogView.colorField.setText(dogView.tableModel.getValueAt(row, 3).toString());
-            dogView.breedField.setText(dogView.tableModel.getValueAt(row, 4).toString());
-            dogView.isTrainedBox.setSelected(dogView.tableModel.getValueAt(row, 5).toString().equals("Yes"));
+    private void populateFormFromTable() {
+        int row = dogView.table.getSelectedRow();
+        if (row < 0 || row >= dogView.tableModel.getRowCount()) {
+            return;
         }
+        dogView.idField.setText(dogView.tableModel.getValueAt(row, 0).toString());
+        dogView.nameField.setText(dogView.tableModel.getValueAt(row, 1).toString());
+        dogView.ageField.setText(dogView.tableModel.getValueAt(row, 2).toString());
+        dogView.colorField.setText(dogView.tableModel.getValueAt(row, 3).toString());
+        dogView.breedField.setText(dogView.tableModel.getValueAt(row, 4).toString());
+        dogView.isTrainedBox.setSelected(dogView.tableModel.getValueAt(row, 5).toString().equals("Yes"));
     }
 }

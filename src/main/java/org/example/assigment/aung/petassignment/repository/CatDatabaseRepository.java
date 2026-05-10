@@ -11,18 +11,22 @@ public class CatDatabaseRepository extends AbstractPetRepository<Cat> {
 
     @Override
     protected String getInsertSql() {
-        return "insert into cats(id, name, age, type, color, isIndoor, furlength) values(?,?,?,?,?,?,?)";
+        return "insert into cats(name, age, type, color, isIndoor, furlength) values(?,?,?,?,?,?)";
     }
 
     @Override
     protected void setInsertParam(PreparedStatement preparedStatement, Cat cat) throws SQLException {
-        preparedStatement.setString(1, cat.getId());
-        preparedStatement.setString(2, cat.getName());
-        preparedStatement.setInt(3, cat.getAge());
-        preparedStatement.setString(4, cat.getType().name());
-        preparedStatement.setString(5, cat.getColor());
-        preparedStatement.setBoolean(6, cat.isIndoor());
-        preparedStatement.setString(7, cat.getFurlength().name());
+        preparedStatement.setString(1, cat.getName());
+        preparedStatement.setInt(2, cat.getAge());
+        preparedStatement.setString(3, cat.getType().name());
+        preparedStatement.setString(4, cat.getColor());
+        preparedStatement.setBoolean(5, cat.isIndoor());
+        preparedStatement.setString(6, cat.getFurlength().name());
+    }
+
+    @Override
+    protected void setGenerateID(ResultSet rs, Cat cat) throws SQLException {
+        cat.setId(rs.getInt(1));
     }
 
     @Override
@@ -43,7 +47,7 @@ public class CatDatabaseRepository extends AbstractPetRepository<Cat> {
         preparedStatement.setString(4, cat.getColor());
         preparedStatement.setBoolean(5, cat.isIndoor());
         preparedStatement.setString(6, cat.getFurlength().name());
-        preparedStatement.setString(7, cat.getId());
+        preparedStatement.setInt(7, cat.getId());
     }
 
     @Override
@@ -54,7 +58,7 @@ public class CatDatabaseRepository extends AbstractPetRepository<Cat> {
     @Override
     protected Cat mapRow(ResultSet rs) throws SQLException {
         return new Cat(
-                rs.getString("id"),
+                rs.getInt("id"),
                 rs.getString("name"),
                 rs.getInt("age"),
                 Pet.Type.valueOf(rs.getString("type")),

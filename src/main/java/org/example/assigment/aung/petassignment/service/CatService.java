@@ -23,7 +23,7 @@ public class CatService {
         repo.update(cat);
     }
 
-    public void deleteCatById(String id) {
+    public void deleteCatById(int id) {
         repo.deleteById(id);
     }
 

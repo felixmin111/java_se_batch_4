@@ -19,7 +19,7 @@ public class DogService {
     public void updateDog(Dog dog){
         repo.update(dog);
     }
-    public void deleteDogById(String id) {
+    public void deleteDogById(int id) {
         repo.deleteById(id);
     }
 
