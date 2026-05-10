@@ -3,7 +3,7 @@ package org.example.assigment.lapyae.day13Pet.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class HomeView extends JPanel { // MUST extend JPanel
+public class HomeView extends JPanel {
     public HomeView() {
         setLayout(new GridBagLayout());
         JLabel message = new JLabel(

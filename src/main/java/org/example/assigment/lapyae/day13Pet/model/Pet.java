@@ -23,7 +23,6 @@ public abstract class Pet {
     @org.example.assigment.lapyae.day13Pet.annotation.NoNumbers
     private String color;
 
-    // RESTORED CONSTRUCTOR!
     public Pet(String id, String name, int age, Type type, String color) {
         this.id = id;
         this.name = name;

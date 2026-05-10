@@ -24,7 +24,6 @@ public class BasicValidator {
 
                 if (field.isAnnotationPresent(org.example.assigment.lapyae.day13Pet.annotation.NoNumbers.class)) {
                     Object value = field.get(obj);
-                    // Check if the string contains any digits (0-9)
                     if (value != null && value.toString().matches(".*\\d.*")) {
                         throw new Exception("Error: " + field.getName() + " cannot contain numbers!");
                     }

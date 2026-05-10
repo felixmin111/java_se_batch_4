@@ -19,7 +19,7 @@ public class DogView extends JPanel {
 
     public DogView() {
         setLayout(new BorderLayout());
-        idField.setEditable(false); // Lock the ID field so users can't type in it!
+        idField.setEditable(false);
 
         JPanel inputPanel = new JPanel(new GridLayout(6, 2));
         inputPanel.add(new JLabel("ID:")); inputPanel.add(idField);
