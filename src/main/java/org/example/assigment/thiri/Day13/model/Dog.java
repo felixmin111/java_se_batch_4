@@ -1,10 +1,16 @@
 package org.example.assigment.thiri.Day13.model;
 
+import org.example.assigment.thiri.Day13.annotation.NotNullField;
+
 public class Dog extends Pet {
+
+    @NotNullField(message = "Dog breed cannot be empty.")
     private String breed;
+
+    @NotNullField(message = "Please select is trained? (Yes or No).")
     private boolean isTrained;
 
-    public Dog(int id, String name, int age, String color, PetType type, String breed, boolean isTrained) {
+    public Dog(Integer id, String name, int age, String color, PetType type, String breed, boolean isTrained) {
         super(id,name,age,color, type);
         this.breed=breed;
         this.isTrained=isTrained;

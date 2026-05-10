@@ -1,14 +1,16 @@
 package org.example.assigment.thiri.Day13.service;
 
+import org.example.Day17.model.Product;
 import org.example.assigment.thiri.Day13.model.Cat;
 import org.example.assigment.thiri.Day13.model.Pet;
-import org.example.assigment.thiri.Day13.view.CatDisplayView;
+import org.example.assigment.thiri.Day13.repository.CatRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CatService {
     private static List<Cat> cats = new ArrayList<>();
+    private CatRepository catRepository;
 
     static {
         cats.add(new Cat(1, "Thiri", 1, "orange", Pet.PetType.CAT, true, "short"));
@@ -16,30 +18,33 @@ public class CatService {
         cats.add(new Cat(3, "Hla", 3, "black", Pet.PetType.CAT, true, "medium"));
     }
 
-    public static List<Cat> getCats() {
-        return cats;
+    public CatService() {this.catRepository = new CatRepository();
     }
 
-    public static void saveCatData(int id, String name, int age, String isIndoorStr, String furLength) {
-        boolean isIndoor = isIndoorStr.equalsIgnoreCase("yes");
-        Cat newCat = new Cat(id, name, age, "Unknown", Pet.PetType.CAT, isIndoor, furLength);
-        cats.add(newCat);
-        System.out.println("Service: Model created and saved.");
+    public  List<Cat> getCats() {
+        return catRepository.findAll();
     }
 
-    public void loadData() {
-        CatDisplayView.model.setRowCount(0);
+    public  void saveCat(Cat cat) {
+        catRepository.save(cat);
+    }
 
-        List<Cat> cats = CatService.getCats();
+    public  void updateCat(Cat cat) {
+        catRepository.update(cat);
+    }
 
+    public Cat getCatById(int id) {
         for (Cat cat : cats) {
-            CatDisplayView.model.addRow(new Object[]{
-                    cat.getId(),
-                    cat.getName(),
-                    cat.getAge(),
-                    cat.isIndoor() ? "Yes" : "No",
-                    cat.getLength()
-            });
+            if(cat.getId() == id) {
+                return cat;
+            }
         }
+        return null;
+    }
+
+    public void deleteCat(int id) {
+        catRepository.deleteById(id);
     }
 }
+
+

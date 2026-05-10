@@ -1,31 +1,36 @@
 package org.example.assigment.thiri.Day13.view;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.table.DefaultTableModel;
 
-public  class  CatInputView {
+public  class  CatView {
 
-    public static JTextField idField;
-    public static JTextField nameField;
-    public static JTextField ageField;
+    public JTextField idField;
+    public  JTextField nameField;
+    public  JTextField ageField;
+    public  JTextField colorField;
 
-    public static ButtonGroup buttonGroup1;
-    public static ButtonGroup buttonGroup2;
+    public  ButtonGroup buttonGroup1;
+    public  ButtonGroup buttonGroup2;
 
-    public static JRadioButton option1;
-    public static JRadioButton option2;
+    public  JRadioButton option1;
+    public  JRadioButton option2;
 
-    public static JRadioButton longF;
-    public static JRadioButton mediumF;
-    public static JRadioButton shortF;
-
+    public  JRadioButton longF;
+    public  JRadioButton mediumF;
+    public  JRadioButton shortF;
 
     public  JButton saveButton;
-    public  JButton backButton;
-    public static JLabel resultField;
+    public  JButton updateButton;
+    public JButton deleteButton;
+
+    public  JLabel resultField;
+
+    public JTable table;
+    public DefaultTableModel tableModel;
     public JPanel panel;
 
-    public CatInputView() {
+    public CatView() {
         System.out.println("Cat Input View");
         panel = new JPanel();
         panel.setLayout(null);
@@ -42,6 +47,7 @@ public  class  CatInputView {
         idField = new JTextField();
         idField.setBounds(190, 70, 160, 30);
         panel.add(idField);
+        idField.setEnabled(false);
 
         JLabel nameLabel = new JLabel("Name");
         nameLabel.setBounds(70, 120, 120, 30);
@@ -59,16 +65,25 @@ public  class  CatInputView {
         ageField.setBounds(190, 170, 160, 30);
         panel.add(ageField);
 
+        JLabel colorLabel = new JLabel("Color");
+        colorLabel.setBounds(70, 220, 120, 30);
+        panel.add(colorLabel);
+
+        colorField = new JTextField();
+        colorField.setBounds(190, 220, 160, 30);
+        panel.add(colorField);
+
+
         JLabel indoorLabel = new JLabel("Indoor");
-        indoorLabel.setBounds(70, 220, 120, 30);
+        indoorLabel.setBounds(70, 270, 120, 30);
         panel.add(indoorLabel);
 
         option1 = new JRadioButton("Yes");
-        option1.setBounds(190, 220, 60, 30);
+        option1.setBounds(190, 270, 60, 30);
         panel.add(option1);
 
         option2 = new JRadioButton("No");
-        option2.setBounds(250, 220, 60, 30);
+        option2.setBounds(250, 270, 60, 30);
         panel.add(option2);
 
         buttonGroup1 = new ButtonGroup();
@@ -76,19 +91,19 @@ public  class  CatInputView {
         buttonGroup1.add(option2);
 
         JLabel furLengthLabel = new JLabel("Fur Length");
-        furLengthLabel.setBounds(70, 270, 120, 30);
+        furLengthLabel.setBounds(70, 320, 120, 30);
         panel.add(furLengthLabel);
 
         longF = new JRadioButton("Long");
-        longF.setBounds(190, 270, 70, 30);
+        longF.setBounds(190, 320, 70, 30);
         panel.add(longF);
 
         mediumF = new JRadioButton("Medium");
-        mediumF.setBounds(250, 270, 100, 30);
+        mediumF.setBounds(250, 320, 90, 30);
         panel.add(mediumF);
 
         shortF = new JRadioButton("Short");
-        shortF.setBounds(330, 270, 80, 30);
+        shortF.setBounds(330, 320, 80, 30);
         panel.add(shortF);
 
         buttonGroup2 = new ButtonGroup();
@@ -97,16 +112,30 @@ public  class  CatInputView {
         buttonGroup2.add(shortF);
 
         saveButton = new JButton("Save");
-        saveButton.setBounds(190, 320, 100, 30);
+        saveButton.setBounds(450, 120, 100, 30);
         panel.add(saveButton);
 
-        backButton = new JButton("Back");
-        backButton.setBounds(350, 320, 100, 30);
-        panel.add(backButton);
+        updateButton = new JButton("Update");
+        updateButton.setBounds(450, 170, 100, 30);
+        panel.add(updateButton);
+
+        deleteButton = new JButton("Delete");
+        deleteButton.setBounds(450, 220, 100, 30);
+        panel.add(deleteButton);
 
         resultField = new JLabel();
-        resultField.setBounds(30, 400, 400, 50);
+        resultField.setBounds(600, 120, 400, 50);
         panel.add(resultField);
+
+        tableModel = new DefaultTableModel(
+                new Object[]{"ID", "Name", "Age", "Color", "Indoor", "Fur length"}, 0
+        );
+
+        table = new JTable(tableModel);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(70, 370, 650, 200);
+        panel.add(scrollPane);
 
     }
 }

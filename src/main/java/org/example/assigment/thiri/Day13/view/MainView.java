@@ -4,45 +4,43 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainView {
-
     public JFrame frame;
-    public static JPanel mainPanel;
-    public JMenuBar menuBar;
+    public JMenuItem catMenuItem;
+    public JMenuItem dogMenuItem;
     public JMenu homeMenu;
-    public JMenu menu;
-    public JLabel titleLabel;
 
+    public  static JPanel majorPanel;
     public MainView() {
-
         frame = new JFrame("Pet Management System");
-        menuBar = new JMenuBar();
 
+        JMenuBar menuBar = new JMenuBar();
         homeMenu = new JMenu("Home");
-        menu = new JMenu("Pet Management Menu");
+
+        JMenu menu = new JMenu("Pet Management Menu");
+
+        catMenuItem = new JMenuItem("Cat");
+        dogMenuItem = new JMenuItem("Dog");
+        menu.add(catMenuItem);
+        menu.add(dogMenuItem);
         menuBar.add(homeMenu);
         menuBar.add(menu);
 
-        titleLabel = new JLabel("Welcome to Pet Management System");
-        titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
         frame.setJMenuBar(menuBar);
-        mainPanel = new JPanel(new BorderLayout());
-        mainPanel.add(titleLabel, BorderLayout.CENTER);
 
-        frame.add(mainPanel);
-        frame.setSize(600, 600);
+        majorPanel = new JPanel(new BorderLayout());
+        frame.add(majorPanel);
+        frame.setSize(800, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void setView(JPanel panel){
+        majorPanel.removeAll();
+        majorPanel.add(panel, BorderLayout.CENTER);
+        majorPanel.revalidate();
+        majorPanel.repaint();
     }
 
     public void show() {
         frame.setVisible(true);
-    }
-
-    public static void setView(JPanel panel){
-        mainPanel.removeAll();
-        mainPanel.add(panel, BorderLayout.CENTER);
-        mainPanel.revalidate();
-        mainPanel.repaint();
     }
 }

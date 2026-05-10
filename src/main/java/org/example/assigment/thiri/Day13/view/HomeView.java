@@ -18,7 +18,8 @@ public class HomeView {
                         + "Click Pet Management to choose Cat or Dog.<br>"
                         + "Then you can add, update, delete and view pets."
                         + "</div></html>",
-                SwingConstants.CENTER);
+                SwingConstants.CENTER
+        );
 
         message.setFont(new Font("Arial", Font.PLAIN, 15));
 
