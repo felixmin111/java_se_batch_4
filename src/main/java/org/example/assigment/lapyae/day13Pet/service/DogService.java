@@ -1,29 +1,25 @@
 package org.example.assigment.lapyae.day13Pet.service;
 
 import org.example.assigment.lapyae.day13Pet.model.Dog;
-import java.util.ArrayList;
+import org.example.assigment.lapyae.day13Pet.repository.DogDBRepo;
 import java.util.List;
 
 public class DogService {
-    private List<Dog> dogs = new ArrayList<>();
+    private DogDBRepo repo = new DogDBRepo();
+
     public void addDog(Dog dog) {
-        dogs.add(dog);
+        repo.save(dog);
     }
 
     public List<Dog> getAllDogs() {
-        return dogs;
+        return repo.findAll();
     }
 
     public void delete(String id) {
-        dogs.removeIf(d -> d.getId().equals(id));
+        repo.deleteById(id);
     }
 
     public void update(Dog updatedDog) {
-        for (int i = 0; i < dogs.size(); i++) {
-            if (dogs.get(i).getId().equals(updatedDog.getId())) {
-                dogs.set(i, updatedDog);
-                return;
-            }
-        }
+        repo.update(updatedDog);
     }
 }

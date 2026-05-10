@@ -1,6 +1,8 @@
 package org.example.assigment.lapyae.day13Pet.model;
 
 public class Dog extends Pet {
+    @org.example.assigment.lapyae.day13Pet.annotation.Required
+    @org.example.assigment.lapyae.day13Pet.annotation.NoNumbers
     private String breed;
     private boolean isTrained;
 

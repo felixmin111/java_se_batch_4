@@ -22,20 +22,46 @@ public class CatController {
                         Pet.Type.CAT,
                         view.colorField.getText(),
                         view.indoorBox.isSelected(),
-                        Cat.FurLength.valueOf(view.furBox.getSelectedItem().toString())
-                );
+                        Cat.FurLength.valueOf(view.furBox.getSelectedItem().toString()));
+                
+                // --- VALIDATION ADDED HERE ---
+                org.example.assigment.lapyae.day13Pet.validator.BasicValidator.validatePet(cat);
+                
                 service.addCat(cat);
                 refreshTable();
             } catch (NumberFormatException ex) {
-                System.out.println("Invalid age format!");
+                javax.swing.JOptionPane.showMessageDialog(view, "Age must be a valid number!");
+            } catch (Exception ex) {
+                // Catch validation errors and show them!
+                javax.swing.JOptionPane.showMessageDialog(view, ex.getMessage());
             }
         });
+
+        this.view.deleteBtn.addActionListener(e -> {
+            // Get the row the user clicked on
+            int selectedRow = view.table.getSelectedRow();
+
+            if (selectedRow != -1) { // -1 means no row is selected
+                // Grab the ID from the first column (index 0)
+                String id = view.tableModel.getValueAt(selectedRow, 0).toString();
+
+                // Tell the service to delete it from the DB
+                service.removeCat(id);
+
+                // Refresh the table so it disappears from the screen
+                refreshTable();
+            } else {
+                // Warn the user if they didn't select a row
+                javax.swing.JOptionPane.showMessageDialog(view, "Please select a cat from the table to delete!");
+            }
+        });
+        refreshTable();
     }
 
     private void refreshTable() {
         view.tableModel.setRowCount(0);
         for (Cat c : service.getAllCats()) {
-            view.tableModel.addRow(new Object[]{
+            view.tableModel.addRow(new Object[] {
                     c.getId(),
                     c.getName(),
                     c.getAge(),

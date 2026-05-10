@@ -1,17 +1,21 @@
 package org.example.assigment.lapyae.day13Pet.service;
 
-import org.example.assigment.lapyae.day13Pet.model.Cat; // Added Import
-import java.util.ArrayList;
+import org.example.assigment.lapyae.day13Pet.model.Cat;
+import org.example.assigment.lapyae.day13Pet.repository.CatDBRepo;
 import java.util.List;
 
 public class CatService {
-    private List<Cat> catList = new ArrayList<>(); // Changed to Cat
+    private CatDBRepo repo = new CatDBRepo();
 
-    public void addCat(Cat cat) { catList.add(cat); } // Renamed for clarity
+    public void addCat(Cat cat) {
+        repo.save(cat);
+    }
 
-    public List<Cat> getAllCats() { return catList; }
+    public List<Cat> getAllCats() {
+        return repo.findAll();
+    }
 
     public void removeCat(String id) {
-        catList.removeIf(cat -> cat.getId().equals(id));
+        repo.deleteById(id);
     }
 }

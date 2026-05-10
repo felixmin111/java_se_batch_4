@@ -16,6 +16,7 @@ public class CatView extends JPanel {
 
     public CatView() {
         setLayout(new BorderLayout());
+        idField.setEditable(false); // Lock the ID field so users can't type in it!
         JPanel form = new JPanel(new GridLayout(7, 2, 5, 5));
         form.add(new JLabel("ID:")); form.add(idField);
         form.add(new JLabel("Name:")); form.add(nameField);
