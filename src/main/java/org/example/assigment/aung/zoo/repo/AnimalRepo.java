@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AnimalRepo {
     public void saveAnimal(Animal animal) {
-        String sql = "insert into zoo (name, age, owner_name, weight, tame) values (?,?,?,?,?)";
+        String sql = "insert into animals (name, age, species, weight, tame) values (?,?,?,?,?)";
 
         try {
             Connection conn = DBconnection.getConnection();
@@ -18,7 +18,7 @@ public class AnimalRepo {
 
             pstmt.setString(1, animal.getName());
             pstmt.setInt(2, animal.getAge());
-            pstmt.setString(3, animal.getOwnerName());
+            pstmt.setString(3, animal.getSpecies());
             pstmt.setInt(4, animal.getWeight());
             pstmt.setBoolean(5, animal.isTame());
 
@@ -34,7 +34,7 @@ public class AnimalRepo {
 
     public List<Animal> getAllAnimals(){
         List<Animal> animals = new ArrayList<>();
-        String sql = "select * from zoo";
+        String sql = "select * from animals";
 
         try {
             Connection conn = DBconnection.getConnection();
@@ -46,13 +46,14 @@ public class AnimalRepo {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int age = rs.getInt("age");
-                String ownerName = rs.getString("owner_name");
+                String species = rs.getString("species");
                 int weight = rs.getInt("weight");
                 boolean tame = rs.getBoolean("tame");
 
-                Animal animal = new Animal(id, name, age, ownerName, weight, tame);
+                Animal animal = new Animal(id, name, age, species, weight, tame);
 
                 animals.add(animal);
+
             }
 
 

@@ -4,7 +4,7 @@ public class Animal {
     private int id;
     private  String name;
     private int age;
-    private String ownerName;
+    private String species;
     private int weight;
     private boolean tame;
 
@@ -31,12 +31,12 @@ public class Animal {
         this.age = age;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getSpecies() {
+        return species;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setSpecies(String species) {
+        this.species = species;
     }
 
     public int getWeight() {
@@ -55,20 +55,22 @@ public class Animal {
         this.tame = tame;
     }
 
-    public Animal(int ID, String name, int age, String owner_name, int weight, boolean tame) {
-        this.id = ID;
+    public Animal(String name, int age, String species, int weight, boolean tame) {
         this.name = name;
         this.age = age;
-        this.ownerName = owner_name;
+        this.species = species;
         this.weight = weight;
         this.tame = tame;
     }
 
-    public Animal(String name, String owner_name, int weight, boolean tame) {
-        this.name = name;
-        this.ownerName = owner_name;
-        this.weight = weight;
-        this.tame = tame;
-    }
+    public Animal(int id,  String name, int age, String species, int weight, boolean tame) {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+            this.species = species;
+            this.weight = weight;
+            this.tame = tame;
+        }
+
 
 }
