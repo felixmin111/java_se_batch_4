@@ -64,4 +64,11 @@ public class Animal {
         this.tame = tame;
     }
 
+    public Animal(String name, String owner_name, int weight, boolean tame) {
+        this.name = name;
+        this.ownerName = owner_name;
+        this.weight = weight;
+        this.tame = tame;
+    }
+
 }
