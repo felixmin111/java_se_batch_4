@@ -10,7 +10,7 @@ public class DBconnection {
     private static final String USER = "postgres";
     private static final String PASS = "root";
 
-    public static Connection CheckConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         Connection connection = DriverManager.getConnection(URL, USER, PASS);
         if (connection == null) {
             System.out.println("Unavailable DB!!");

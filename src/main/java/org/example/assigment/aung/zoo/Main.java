@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             DBconnection db = new DBconnection();
-            db.CheckConnection();
+            db.getConnection();
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");
             System.out.println(e.getMessage());
