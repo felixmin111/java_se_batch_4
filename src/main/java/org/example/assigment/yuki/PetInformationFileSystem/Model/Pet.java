@@ -1,7 +1,7 @@
 package org.example.assigment.yuki.PetInformationFileSystem.Model;
 
 public class Pet {
-    private int id;
+    private Integer id;
     private String name;
     private int age;
     private String type;
@@ -9,7 +9,7 @@ public class Pet {
 
     public Pet() {}
 
-    public Pet(int id,String name,int age,String type, String color ) {
+    public Pet(Integer id,String name,int age,String type, String color ) {
         this.id = id;
         this.color = color;
         this.type = type;
@@ -17,9 +17,11 @@ public class Pet {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
+
+    public void setId(Integer id) {this.id = id;}
 
     public String getName() {
         return name;

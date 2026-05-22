@@ -1,8 +1,7 @@
-package org.example.assigment.yuki.PetInformationFileSystem.FileRepository;
+package org.example.assigment.yuki.PetInformationFileSystem.FileRepository.older;
 import org.example.assigment.yuki.PetInformationFileSystem.Model.Pet;
 import java.io.*;
 import java.util.ArrayList;
-import java.io.*;
 
 public abstract class GenericFileRepository<T> {
     public void saveToFile(String filePath, T[] objects){
