@@ -1,6 +1,4 @@
-package org.example.Day15.repository;
-
-import org.example.Day15.model.Product;
+package org.example.Day20.repository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,12 +12,17 @@ public abstract class AbstractRepository<T>{
     protected abstract String getUpdateSql();
     protected abstract void setUpdateParam(PreparedStatement preparedStatement, T t)throws SQLException;
     protected abstract String getDeleteSql();
+    protected String getFindbyNameSql(){
+        return null;
+    }
+    protected String getSearchSql(){
+        return null;
+    }
     protected abstract T mapRow(ResultSet rs)throws SQLException;
-
     public List<T> findAll() {
         List<T> list = new ArrayList<>();
         String sql=getFindAllSql();
-        try(Connection conn=DBConnection.getConnection();
+        try(Connection conn= DBConnection.getConnection();
             PreparedStatement ps=conn.prepareStatement(sql);
             ResultSet rs=ps.executeQuery()
         ){
@@ -34,7 +37,7 @@ public abstract class AbstractRepository<T>{
     }
     public void save(T t) {
         String sql=getInsertSql();
-        try(Connection conn=DBConnection.getConnection();
+        try(Connection conn= DBConnection.getConnection();
             PreparedStatement ps=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
         ) {
             setInsertParam(ps,t);
@@ -49,7 +52,7 @@ public abstract class AbstractRepository<T>{
     }
     public void update(T t) {
         String sql=getUpdateSql();
-        try(Connection conn=DBConnection.getConnection();
+        try(Connection conn= DBConnection.getConnection();
             PreparedStatement ps=conn.prepareStatement(sql)){
             setUpdateParam(ps,t);
             ps.executeUpdate();
@@ -60,7 +63,7 @@ public abstract class AbstractRepository<T>{
     public void deleteById(int id){
         String sql=getDeleteSql();
         try(
-                Connection conn=DBConnection.getConnection();
+                Connection conn= DBConnection.getConnection();
                 PreparedStatement ps=conn.prepareStatement(sql)
         ){
             ps.setInt(1,id);
@@ -71,4 +74,48 @@ public abstract class AbstractRepository<T>{
         }
 
     }
+    public T findByName(String name) {
+        String sql=getFindbyNameSql();
+        try(Connection conn= DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement(sql);
+        ){
+            ps.setString(1,name);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+               return mapRow(rs);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<T> search(String keyword) {
+        List<T> list = new ArrayList<>();
+        String sql = getSearchSql();
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            String searchValue = "%" + keyword + "%";
+
+            ps.setString(1, searchValue);
+            ps.setString(2, searchValue);
+            ps.setString(3, searchValue);
+            ps.setString(4, searchValue);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapRow(rs));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }
