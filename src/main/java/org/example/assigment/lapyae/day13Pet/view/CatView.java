@@ -11,7 +11,7 @@ public class CatView extends JPanel {
     public JComboBox<String> furBox = new JComboBox<>(new String[]{"SHORT", "MEDIUM", "LONG"});
 
     public JButton saveBtn = new JButton("Save"), updateBtn = new JButton("Update"), deleteBtn = new JButton("Delete");
-    public DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Indoor", "Fur"}, 0);
+    public DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Color", "Indoor", "Fur"}, 0);
     public JTable table = new JTable(tableModel);
 
     public CatView() {
@@ -24,7 +24,9 @@ public class CatView extends JPanel {
         form.add(new JLabel("Color:")); form.add(colorField);
         form.add(new JLabel("Options:")); form.add(indoorBox);
         form.add(new JLabel("Fur:")); form.add(furBox);
-        form.add(saveBtn); form.add(deleteBtn);
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(saveBtn); btnPanel.add(updateBtn); btnPanel.add(deleteBtn);
+        form.add(new JLabel("Actions:")); form.add(btnPanel);
 
         add(form, BorderLayout.NORTH);
         add(new JScrollPane(table), BorderLayout.CENTER);

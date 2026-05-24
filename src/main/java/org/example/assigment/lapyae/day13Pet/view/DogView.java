@@ -10,8 +10,10 @@ public class DogView extends JPanel {
     public JTextField ageField = new JTextField(5);
     public JTextField breedField = new JTextField(10);
     public JCheckBox trainedBox = new JCheckBox("Trained");
+    public JTextField colorField = new JTextField(10);
 
     public JButton saveBtn = new JButton("Save");
+    public JButton updateBtn = new JButton("Update");
     public JButton deleteBtn = new JButton("Delete");
 
     public DefaultTableModel tableModel;
@@ -21,15 +23,19 @@ public class DogView extends JPanel {
         setLayout(new BorderLayout());
         idField.setEditable(false);
 
-        JPanel inputPanel = new JPanel(new GridLayout(6, 2));
+        JPanel inputPanel = new JPanel(new GridLayout(7, 2));
         inputPanel.add(new JLabel("ID:")); inputPanel.add(idField);
         inputPanel.add(new JLabel("Name:")); inputPanel.add(nameField);
         inputPanel.add(new JLabel("Age:")); inputPanel.add(ageField);
+        inputPanel.add(new JLabel("Color:")); inputPanel.add(colorField);
         inputPanel.add(new JLabel("Breed:")); inputPanel.add(breedField);
         inputPanel.add(new JLabel("Status:")); inputPanel.add(trainedBox);
-        inputPanel.add(saveBtn); inputPanel.add(deleteBtn);
+        
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(saveBtn); btnPanel.add(updateBtn); btnPanel.add(deleteBtn);
+        inputPanel.add(new JLabel("Actions:")); inputPanel.add(btnPanel);
 
-        tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Breed", "Trained"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"ID", "Name", "Age", "Color", "Breed", "Trained"}, 0);
         table = new JTable(tableModel);
 
         add(inputPanel, BorderLayout.NORTH);
