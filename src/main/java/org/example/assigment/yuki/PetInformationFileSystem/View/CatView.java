@@ -9,6 +9,7 @@ public class CatView {
     public JPanel panel;
 
     public JTextField idField, nameField, ageField, colorField, furField;
+    public JComboBox<String> indoorBox;
     public JButton saveButton;
     public JButton updateButton;
     public JButton deleteButton;
@@ -54,12 +55,18 @@ public class CatView {
         colorField.setBounds(150,220,150,30);
         panel.add(colorField);
 
+        JLabel indoorLabel = new JLabel("Indoor:");
+        indoorLabel.setBounds(70, 260, 100, 30);
+        panel.add(indoorLabel);
+        indoorBox = new JComboBox<>(new String[]{"Yes", "No"});
+        indoorBox.setBounds(150, 260, 150, 30);
+        panel.add(indoorBox);
 
         JLabel furLabel = new JLabel("Fur Length:");
-        furLabel.setBounds(70, 260, 100, 30);
+        furLabel.setBounds(70, 300, 100, 30);
         panel.add(furLabel);
         furField = new JTextField();
-        furField.setBounds(150,260,150,30);
+        furField.setBounds(150,300,150,30);
         panel.add(furField);
 
         saveButton = new JButton("Save");
@@ -75,12 +82,12 @@ public class CatView {
         panel.add(deleteButton);
 
         tableModel = new DefaultTableModel(
-                new Object[]{"ID","Name","Age","Color","Fur"},0);
+                new Object[]{"ID","Name","Age","Color","Indoor","Fur"},0);
 
         table = new JTable(tableModel);
 
         JScrollPane sp = new JScrollPane(table);
-        sp.setBounds(50,320,600,200);
+        sp.setBounds(50,380,600,200);
         panel.add(sp);
     }
 }
