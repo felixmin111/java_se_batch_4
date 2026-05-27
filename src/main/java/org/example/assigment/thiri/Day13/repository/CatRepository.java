@@ -68,4 +68,5 @@ public class CatRepository extends AbstractPetRepository<Cat> {
                 rs.getString("fur_length")  // Ensure underscore
         );
     }
+
 }
