@@ -6,7 +6,7 @@
 //
 //public class TestConnection {
 //
-//    public static void main(String[] args) {
+//    public static void MainProgram(String[] args) {
 //
 //        try(Connection conn = DBConnection.getConnection()){
 //

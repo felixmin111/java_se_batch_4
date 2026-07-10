@@ -16,9 +16,9 @@ public class MainApp {
 //
 //
 //      studentFileRepository.saveToFile(
-//              "src/main/java/org/example/Day13/dataFile/students.txt",students);
+//              "src/MainProgram/java/org/example/Day13/dataFile/students.txt",students);
 //      Student[] studentsOut=studentFileRepository.loadFromFile(
-//              "src/main/java/org/example/Day13/dataFile/students.txt");
+//              "src/MainProgram/java/org/example/Day13/dataFile/students.txt");
 //      System.out.println("<---Displaying the File Reading Data--->");
 //      for (Student student : studentsOut) {
 //          if(student!=null){
@@ -34,9 +34,9 @@ public class MainApp {
 
 
         teacherFileRepository.saveToFile(
-                "src/main/java/org/example/Day13/dataFile/teachers.txt",teachers);
+                "src/MainProgram/java/org/example/Day13/dataFile/teachers.txt",teachers);
         ArrayList<Teacher> teachersOut=teacherFileRepository.loadFromFile(
-                "src/main/java/org/example/Day13/dataFile/teachers.txt");
+                "src/MainProgram/java/org/example/Day13/dataFile/teachers.txt");
         System.out.println("<---Displaying the File Reading Data--->");
         for (Teacher student : teachersOut) {
             if(student!=null){
