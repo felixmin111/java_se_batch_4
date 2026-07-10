@@ -54,7 +54,7 @@ public class ProductRepository {
         return list;
     }
 
-    public void save(Product product) {
+    public Product save(Product product) {
         String sql="insert into products(name,price,quantity,category_id) values(?,?,?,?)";
         try(Connection conn= DBConnection.getConnection();
             PreparedStatement ps=conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
@@ -71,6 +71,7 @@ public class ProductRepository {
         }catch(SQLException e){
             e.printStackTrace();
         }
+        return product;
     }
 
     public void update(Product product) {
@@ -100,7 +101,6 @@ public class ProductRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
     public List<Product> search(String keyword) {

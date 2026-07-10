@@ -45,7 +45,6 @@ public class ProductController {
                     product.getQuantity()
             });
         }
-
     }
     private void saveProduct() {
         try {
@@ -59,6 +58,8 @@ public class ProductController {
             Product product = new Product(null, name, price, quantity, category);
             NullValidator.validate(product);
             productService.save(product);
+            System.out.println("Product saved"+product.getId());//1,4
+
             loadProducts();
             cleanForm();
             JOptionPane.showMessageDialog(productView.panel, "Product saved successfully");

@@ -13,7 +13,8 @@ public class CategoryService {
     }
 
     public List<Category> getAllCategories() {
-         return repository.findAll();
+
+        return repository.findAll();
     }
 
     public void save(Category productCategory) {
