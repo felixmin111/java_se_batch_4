@@ -5,7 +5,7 @@
 //    private PetService service;
 //    private Scanner sc;
 //    private final String DATA_PATH =
-//            "src/main/java/org/example/assigment/yuki/PetInformationFileSystem/data/";
+//            "src/MainProgram/java/org/example/assigment/yuki/PetInformationFileSystem/data/";
 //    private final String CAT_FILE = DATA_PATH + "cat.txt";
 //    private final String DOG_FILE = DATA_PATH + "dog.txt";
 //
