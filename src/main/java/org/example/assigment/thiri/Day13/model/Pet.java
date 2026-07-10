@@ -25,6 +25,7 @@ public class Pet {
     }
 
     private Integer id;
+
     @NotNullField(message = "Pet name is required!")
     private String name;
 

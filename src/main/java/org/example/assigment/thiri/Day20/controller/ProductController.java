@@ -1,0 +1,138 @@
+package org.example.assigment.thiri.Day20.controller;
+import org.example.assigment.thiri.Day20.model.Category;
+import org.example.assigment.thiri.Day20.model.Product;
+import org.example.assigment.thiri.Day20.service.CategoryService;
+import org.example.assigment.thiri.Day20.service.ProductService;
+import org.example.assigment.thiri.Day20.validator.NullValidator;
+import org.example.assigment.thiri.Day20.view.ProductView;
+
+import javax.swing.*;
+import java.util.List;
+
+public class ProductController {
+    private ProductService productService;
+    private CategoryService categoryService;
+    private ProductView productView;
+    public ProductController(ProductService productService, ProductView productView) {
+        this.productService = productService;
+        this.productView = productView;
+        this.categoryService = new CategoryService();
+        this.productView.saveButton.addActionListener(e -> {saveProduct();});
+        this.productView.updateButton.addActionListener(e->{updateProduct();});
+        this.productView.deleteButton.addActionListener(e->{deleteProduct();});
+        this.productView.table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                fillFormFromSelectedRow();
+            }
+        });
+        this.productView.searchField.addActionListener(e -> {
+            searchProduct();
+        });
+        loadProducts();
+        fillDataInCategoryCombo();
+    }
+    private void loadProducts() {
+        //Clean Old data
+        productView.tableModel.setRowCount(0);
+
+        List<Product> products=productService.getAllProducts();
+        for (Product product : products) {
+            productView.tableModel.addRow(new Object[]{
+                    product.getId(),
+                    product.getProductCategory().getName(),
+                    product.getName(),
+                    product.getPrice(),
+                    product.getQuantity()
+            });
+        }
+
+    }
+    private void saveProduct() {
+        try {
+            System.out.println("Saving product");
+            String name = productView.nameField.getText();
+            double price = Double.parseDouble(productView.priceField.getText());
+            int quantity = Integer.parseInt(productView.quantityField.getText());
+            String categoryName=productView.categoryComboBox.getSelectedItem().toString();
+            Category category=this.categoryService.getCategoryByName(categoryName);
+
+            Product product = new Product(null, name, price, quantity, category);
+            NullValidator.validate(product);
+            productService.save(product);
+            loadProducts();
+            cleanForm();
+            JOptionPane.showMessageDialog(productView.panel, "Product saved successfully");
+        }catch (RuntimeException e) {
+            JOptionPane.showMessageDialog(
+                    productView.panel,
+                    e.getMessage(),
+                    "Validation error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void cleanForm(){
+        productView.idField.setText("");
+        productView.nameField.setText("");
+        productView.priceField.setText("");
+        productView.quantityField.setText("");
+        fillDataInCategoryCombo();
+    }
+    private void fillFormFromSelectedRow() {
+        int row = productView.table.getSelectedRow();
+
+        if (row == -1) {
+            return;
+        }
+        productView.idField.setText(productView.tableModel.getValueAt(row, 0).toString());
+        productView.categoryComboBox.setSelectedItem(productView.tableModel.getValueAt(row, 1).toString());
+        productView.nameField.setText(productView.tableModel.getValueAt(row, 2).toString());
+        productView.priceField.setText(productView.tableModel.getValueAt(row, 3).toString());
+        productView.quantityField.setText(productView.tableModel.getValueAt(row, 4).toString());
+    }
+    private void updateProduct() {
+        System.out.println("Update product");
+        int id=Integer.parseInt(productView.idField.getText());
+        String name=productView.nameField.getText();
+        double price=Double.parseDouble(productView.priceField.getText());
+        int quantity=Integer.parseInt(productView.quantityField.getText());
+        String categoryName=productView.categoryComboBox.getSelectedItem().toString();
+        Category category=this.categoryService.getCategoryByName(categoryName);
+        Product product=new Product(id,name,price,quantity,category);
+        productService.updateProduct(product);
+        loadProducts();
+        cleanForm();
+        JOptionPane.showMessageDialog(productView.panel, "Product updated successfully");
+
+    }
+    private void deleteProduct() {
+        int id=Integer.parseInt(productView.idField.getText());
+        productService.deleteProductById(id);
+        loadProducts();
+        cleanForm();
+    }
+    private void fillDataInCategoryCombo(){
+        List<Category> productCategories=this.categoryService.getAllCategories();
+        this.productView.categoryComboBox.removeAllItems();
+        this.productView.categoryComboBox.addItem("--Select Category--");
+        for(Category category:productCategories){
+            this.productView.categoryComboBox.addItem(category.getName());
+        }
+        this.productView.categoryComboBox.setSelectedIndex(0);
+    }
+    private void searchProduct() {
+        String keyword=this.productView.searchField.getText();
+        List<Product> products=this.productService.productSearch(keyword);
+        productView.tableModel.setRowCount(0);
+        for (Product product : products) {
+            productView.tableModel.addRow(new Object[]{
+                    product.getId(),
+                    product.getProductCategory().getName(),
+                    product.getName(),
+                    product.getPrice(),
+                    product.getQuantity()
+            });
+        }
+    }
+
+}

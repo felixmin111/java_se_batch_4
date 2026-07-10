@@ -3,6 +3,7 @@ package org.example.assigment.lapyae.day13Pet.controller;
 import org.example.assigment.lapyae.day13Pet.model.Cat;
 import org.example.assigment.lapyae.day13Pet.model.Pet;
 import org.example.assigment.lapyae.day13Pet.service.CatService;
+import org.example.assigment.lapyae.day13Pet.validator.BasicValidator;
 import org.example.assigment.lapyae.day13Pet.view.CatView;
 
 public class CatController {
@@ -24,7 +25,7 @@ public class CatController {
                         view.indoorBox.isSelected(),
                         Cat.FurLength.valueOf(view.furBox.getSelectedItem().toString()));
 
-                org.example.assigment.lapyae.day13Pet.validator.BasicValidator.validatePet(cat);
+                BasicValidator.validatePet(cat);
                 
                 service.addCat(cat);
                 refreshTable();

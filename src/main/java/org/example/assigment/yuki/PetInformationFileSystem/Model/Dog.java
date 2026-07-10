@@ -5,7 +5,7 @@ public class Dog extends Pet {
     private boolean isTrained;
 
     public Dog(){}
-    public Dog(int id, String name, int age, String color,
+    public Dog(Integer id, String name, int age, String color,
                String breed, boolean isTrained) {
         super(id, name, age, "Dog", color);
         this.breed = breed;

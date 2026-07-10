@@ -15,6 +15,7 @@ public abstract class AbstractRepository<T>{
     protected abstract void setUpdateParam(PreparedStatement preparedStatement, T t)throws SQLException;
     protected abstract String getDeleteSql();
     protected abstract T mapRow(ResultSet rs)throws SQLException;
+
     public List<T> findAll() {
         List<T> list = new ArrayList<>();
         String sql=getFindAllSql();

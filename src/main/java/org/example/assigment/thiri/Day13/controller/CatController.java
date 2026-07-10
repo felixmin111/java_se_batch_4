@@ -99,6 +99,7 @@ public class CatController {
         else if (catView.longF.isSelected()) furLength = "Long";
 
         Cat cat  = new Cat(id, name, age, color, Pet.PetType.CAT, isIndoorStr.equals("yes"), furLength);
+        NullValidator.validate(cat);
         catService.updateCat(cat);
         loadCat();
         clearForm();

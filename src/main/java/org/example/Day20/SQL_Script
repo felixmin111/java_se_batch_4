@@ -1,0 +1,63 @@
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
+    code VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE products (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DOUBLE PRECISION NOT NULL CHECK (price >= 0),
+    quantity INT NOT NULL CHECK (quantity >= 0),
+    category_id INT NOT NULL,
+
+    CONSTRAINT fk_products_category
+        FOREIGN KEY (category_id)
+        REFERENCES categories(id)
+);
+
+-- =========================
+-- CATEGORY DATA
+-- =========================
+
+INSERT INTO categories (name, description, code)
+VALUES
+('Food', 'Food products and snacks', 'FOOD'),
+('Drink', 'Drinks and beverages', 'DRINK'),
+('Electronic', 'Electronic devices and accessories', 'ELEC'),
+('Clothes', 'Clothing and fashion items', 'CLOTH'),
+('Stationery', 'School and office stationery items', 'STAT');
+
+
+-- =========================
+-- PRODUCT DATA
+-- =========================
+
+INSERT INTO products (name, price, quantity, category_id)
+VALUES
+('Apple', 1.50, 100, 1),
+('Banana', 1.20, 120, 1),
+('Bread', 2.30, 40, 1),
+('Milk', 3.50, 25, 2),
+('Orange Juice', 2.80, 60, 2),
+('Coffee', 5.00, 35, 2),
+('Laptop', 850.00, 10, 3),
+('Keyboard', 25.00, 45, 3),
+('Mouse', 15.00, 50, 3),
+('Monitor', 220.00, 15, 3),
+('T-Shirt', 12.00, 70, 4),
+('Jeans', 30.00, 40, 4),
+('Jacket', 55.00, 20, 4),
+('Notebook', 2.00, 150, 5),
+('Pen', 0.80, 300, 5),
+('Marker', 1.50, 120, 5),
+('Pencil', 0.50, 250, 5),
+('Bag', 18.00, 35, 4),
+('Tea', 4.00, 45, 2),
+('Chocolate', 3.20, 80, 1);
+
+
