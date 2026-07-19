@@ -1,9 +1,12 @@
 package org.example.assigment.thiri.Bank;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Account {
+    private String id;
+    private String name;
+    private String email;
+    private String phone;
+    private String address;
+    private String nrc;
     private String bankNo;
     private String pin;
     private double balance;
@@ -12,6 +15,21 @@ public class Account {
         this.bankNo = bankNo;
         setPin(pin);
         setBalance(balance);
+    }
+
+    public Account(String id, String name, String email, String phone, String address, String nrc, String bankNo, String pin, double balance) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.nrc = nrc;
+        this.bankNo = bankNo;
+        this.pin = pin;
+        this.balance = balance;
+    }
+
+    public Account() {
     }
 
     public String getBankNo() {
@@ -77,4 +95,51 @@ public class Account {
         balance += amount;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNrc() {
+        return nrc;
+    }
+
+    public void setNrc(String nrc) {
+        this.nrc = nrc;
+    }
 }

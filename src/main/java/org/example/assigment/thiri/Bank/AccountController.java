@@ -1,11 +1,7 @@
 package org.example.assigment.thiri.Bank;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class AccountController {
 
-        AccountService accountService = new AccountService();
+        AccountService accountService;
 
         public AccountController() {
             this.accountService = new AccountService();

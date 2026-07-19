@@ -5,8 +5,12 @@ import java.util.List;
 
 public class AccountService {
     public List<Account> accounts;
+    public AccountRepository accountRepository;
 
     public AccountService() {
+
+        accountRepository=new AccountRepository();
+
         accounts = new ArrayList<>();
         accounts.add(new Account("123456789", "Abc@1234", 1000.0));
         accounts.add(new Account("123456780", "Abd@1234", 100.0));
@@ -14,14 +18,13 @@ public class AccountService {
     }
 
     public Account login(String username, String password) {
-        for (Account account : accounts) {
-            if (account.getBankNo().equals(username) && account.getPin().equals(password)) {
-                return account;
-            }
+        Account account = accountRepository.login(username, password);
+        if (account != null) {
+            return account;
+        } else {
+            return null;
         }
-        System.out.println("Invalid username or password.");
-        return null;
-   }
+    }
 
 }
 
