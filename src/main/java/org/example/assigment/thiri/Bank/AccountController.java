@@ -1,8 +1,17 @@
 package org.example.assigment.thiri.Bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AccountController {
-    public static void main(String[] args) {
+
         AccountService accountService = new AccountService();
 
+        public AccountController() {
+            this.accountService = new AccountService();
+        }
+
+        public Account login(String bankNo, String pin) {
+            return accountService.login(bankNo, pin);
+        }
     }
-}

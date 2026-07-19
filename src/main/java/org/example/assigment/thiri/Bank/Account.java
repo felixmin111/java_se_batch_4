@@ -10,8 +10,8 @@ public class Account {
 
     public Account(String bankNo, String pin, double balance) {
         this.bankNo = bankNo;
-        this.pin = pin;
-        this.balance = balance;
+        setPin(pin);
+        setBalance(balance);
     }
 
     public String getBankNo() {
@@ -40,13 +40,13 @@ public class Account {
                 hasDigit = true;
             } else if(Character.isLetter(pin.charAt(i))) {
                 hasLetter = true;
-            } else if(Character.isLetter(pin.charAt(i))) {
+            } else  {
                 hasSymbol = true;
             }
         }
 
         if (hasDigit && hasLetter && hasSymbol) {
-            this.bankNo = pin;
+            this.pin = pin;
         } else {
             System.out.println("Error: PIN must contain at least 8 characters, including at least one letter, one digit, and one symbol.");
         }
@@ -63,6 +63,18 @@ public class Account {
         } else {
             System.out.println("Error: Balance cannot be negative");
         }
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
     }
 
 }
