@@ -5,10 +5,12 @@ public class view {
     private Service service;
     private Scanner scanner;
     private Account[] accounts;
+    boolean isRunning = true;
 
     public view(Service service, Account[] accounts) {
         this.service = service;
         this.scanner = new Scanner(System.in);
+        this.accounts = accounts;
     }
 
     public void mainmenu(){
@@ -22,30 +24,34 @@ public class view {
         Account user = service.authenticate(accounts, accNo, pin);
         if (user != null) {
             System.out.println("Authentication Successful");
-            while(true){
+            while(isRunning){
                 System.out.println("\n1.Withdraw Money");
-                System.out.println("\n2. Deposit Money");
-                System.out.println("\n3. Check Balance");
-                System.out.println("\n4. Exit");
-                System.out.println("\n===============");
+                System.out.println("2. Deposit Money");
+                System.out.println("3. Check Balance");
+                System.out.println("4. Exit");
+                System.out.println("===============");
 
                 int choice = scanner.nextInt();
                 switch (choice){
                     case 1:
                         System.out.println("Enter Amount to withdraw: ");
-                        double amount = scanner.nextDouble();
-                        service.withdraw(user, amount);
+                        double withdrawal = scanner.nextDouble();
+                        service.withdraw(user, withdrawal);
+                        break;
 
                     case 2:
                         System.out.println("Enter Amount to deposit: ");
-                        amount = scanner.nextDouble();
-                        service.deposit(user, amount);
+                        double deposited = scanner.nextDouble();
+                        service.deposit(user, deposited);
+                        break;
 
                     case 3:
                         System.out.println("Current Balance RM: "+ user.getBalance());
+                        break;
 
                     case 4:
                         System.out.println("Exiting....");
+                        isRunning = false;
                         break;
 
                     default:
