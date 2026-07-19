@@ -4,7 +4,7 @@
 //import org.example.assigment.thiri.Day13.model.Pet;
 //
 //public class CatFileRepository extends PetGenericFileRepository<Cat> {
-//    private static final String FILE_PATH = "src/main/java/org/example/assigment/thiri/Day13/dataFile/cats.txt";
+//    private static final String FILE_PATH = "src/MainProgram/java/org/example/assigment/thiri/Day13/dataFile/cats.txt";
 //
 //    public String getFilePath() {
 //        return FILE_PATH;

@@ -57,7 +57,7 @@ public class DogController {
         this.view.deleteBtn.addActionListener(e -> {
             int selectedRow = view.table.getSelectedRow();
 
-            if (selectedRow != -1) { // -1 means no row is selected
+            if (selectedRow != -1) { 
                 String id = view.tableModel.getValueAt(selectedRow, 0).toString();
                 service.delete(id);
                 refreshTable();
