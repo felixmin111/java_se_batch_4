@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountService {
-    public List<Account> accounts;
     public AccountRepository accountRepository;
 
     public AccountService() {
 
-        accountRepository=new AccountRepository();
-
-        accounts = new ArrayList<>();
-        accounts.add(new Account("123456789", "Abc@1234", 1000.0));
-        accounts.add(new Account("123456780", "Abd@1234", 100.0));
-        accounts.add(new Account("123456709", "Abe@1234", 8000.0));
+        accountRepository = new AccountRepository();
     }
 
     public Account login(String username, String password) {
@@ -26,5 +20,28 @@ public class AccountService {
         }
     }
 
-}
+    public boolean updateAmount(Account account, double amount, String transactionType) {
+        if (amount <= 0) {
+            return false;
+        }
 
+        if (transactionType.equalsIgnoreCase("withdraw")) {
+            if (account.getBalance() >= amount) {
+                account.setBalance(account.getBalance() - amount);
+            } else {
+                return false;
+            }
+        } else if (transactionType.equalsIgnoreCase("deposit")) {
+            account.setBalance(account.getBalance() + amount);
+        } else {
+            return false;
+        }
+
+        accountRepository.updateAmount(account);
+        return true;
+    }
+
+    public double getCurrentBalance(String bankNo, String pin) {
+        return accountRepository.getCurrentBalance(bankNo, pin);
+    }
+}
