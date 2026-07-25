@@ -18,7 +18,7 @@ import java.util.Scanner;
  * 4. Remove repeated code.
  * 5. Keep the program behavior and output unchanged.
  */
-public class MultiplicationReportRefactoringExercise {
+public class MultiplicationReportRefactoringExerciseQuestion {
     public static String studentName;
     public static int maximumMultiplier;
     public static Scanner scanner = new Scanner(System.in);
