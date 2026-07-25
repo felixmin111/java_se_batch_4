@@ -59,7 +59,7 @@ public class MultiplicationReportRefactoringExercise {
         MultiplicationReportRefactoringExercise table = new MultiplicationReportRefactoringExercise();
 
         table.displayMultiplicationTables();
-        table.grandTotal();
+        table.compare();
         table.report();
     }
 
@@ -275,7 +275,7 @@ public class MultiplicationReportRefactoringExercise {
 
     // -------------------- FINAL REPORT --------------------
 
-    public void grandTotal() {
+    public void compare() {
         grandTotal =
                 totalForTwo
                         + totalForThree
