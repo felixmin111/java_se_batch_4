@@ -64,26 +64,38 @@ public class AccountView {
         }
     }
     private static void withdrawAmount(Account loggedIn){
-        System.out.print("Enter amount that you want to widthdraw: ");
+        System.out.print("Enter amount that you want to withdraw: ");
         double amount = scanner.nextDouble();
         scanner.nextLine();
 
-        if (loggedIn.withdraw(amount)) {
-            System.out.println("WidthDrawProcess Success");
+        if (accountController.updateAmount(loggedIn, amount, "withdraw")) {
+            System.out.println("Withdraw Process Success");
         } else {
-            System.out.println("Insufficient funds.");
+            System.out.println("Insufficient funds or invalid amount.");
         }
     }
+
     private static void depositeAmount(Account loggedIn){
-        System.out.print("Enter amount that you want to Deposite: ");
+        System.out.print("Enter amount that you want to deposit: ");
         double amount = scanner.nextDouble();
         scanner.nextLine();
 
-        loggedIn.deposit(amount);
-        System.out.println("Deposit Process Success");
+        if (accountController.updateAmount(loggedIn, amount, "deposit")) {
+            System.out.println("Deposit Process Success");
+        } else {
+            System.out.println("Invalid amount.");
+        }
     }
+
     private static void showCurrentAmount(Account loggedIn){
-        System.out.println("Your Account have : RM " + loggedIn.getBalance());
+        double freshBalance = accountController.getCurrentBalance(loggedIn.getBankNo(), loggedIn.getPin());
+
+        if (freshBalance != -1) {
+            loggedIn.setBalance(freshBalance);
+            System.out.println("Your Account has: RM " + freshBalance);
+        } else {
+            System.out.println("Error retrieving balance from the database.");
+        }
     }
 
 }

@@ -45,30 +45,17 @@ public class Account {
     }
 
     public void setPin(String pin) {
-        if( pin == null || pin.length() < 8 ) {
-            System.out.println("Error: PIN must be at least 8 character.");
+        if (pin == null || pin.length() < 6) {
+            return;
         }
-
-        boolean hasDigit = false;
-        boolean hasLetter = false;
-        boolean hasSymbol = false;
-
-        for( int i = 0; i < pin.length(); i++ ) {
-            if(Character.isDigit(pin.charAt(i))) {
-                hasDigit = true;
-            } else if(Character.isLetter(pin.charAt(i))) {
-                hasLetter = true;
-            } else  {
-                hasSymbol = true;
+        for (int i = 0; i < pin.length(); i++) {
+            if (!Character.isDigit(pin.charAt(i))) {
+                return;
             }
         }
 
-        if (hasDigit && hasLetter && hasSymbol) {
-            this.pin = pin;
-        } else {
-            System.out.println("Error: PIN must contain at least 8 characters, including at least one letter, one digit, and one symbol.");
-        }
-
+        // 3. If it passes all checks, save the PIN
+        this.pin = pin;
     }
 
     public double getBalance() {
@@ -81,18 +68,6 @@ public class Account {
         } else {
             System.out.println("Error: Balance cannot be negative");
         }
-    }
-
-    public boolean withdraw(double amount) {
-        if (amount <= balance) {
-            balance -= amount;
-            return true;
-        }
-        return false;
-    }
-
-    public void deposit(double amount) {
-        balance += amount;
     }
 
     public String getId() {
