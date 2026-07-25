@@ -57,7 +57,6 @@ public class MultiplicationReportRefactoringExercise {
 
     public static void main(String[] args) {
         MultiplicationReportRefactoringExercise table = new MultiplicationReportRefactoringExercise();
-
         table.displayMultiplicationTables();
         table.compare();
         table.report();
@@ -101,8 +100,6 @@ public class MultiplicationReportRefactoringExercise {
         }
         return maximumMultiplier;
     }
-
-
     // -------------------- TABLE 2 -------------------- //
     public void displayMultiplicationTables() {
 
