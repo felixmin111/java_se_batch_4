@@ -1,33 +1,43 @@
 package org.example.assigment.aung.ATM;
 
+import java.util.Map;
+
 public class Service {
+    private AccountRepository repository;
 
-
-    public Account authenticate(Account[] accounts, String enteredAccNo, String enteredPass){
-        for (Account currentAccount : accounts) {
-            if (currentAccount.getAccNo().equals(enteredAccNo) && currentAccount.getPin().equals(enteredPass)) {
-                return currentAccount;
-            }
-        }
-        return null;
+    public Service() {
+        this.repository = new AccountRepository();
     }
 
-    public void withdraw(Account account, double amount){
-        if(amount > 0 && account.getBalance()>=amount){
-            account.setBalance(account.getBalance() - amount);
-            System.out.println("Withdraw Successful");
+    public Account authenticate(String enteredAccNo, String enteredPass) {
+        return repository.login(enteredAccNo, enteredPass);
+    }
+
+    public void withdraw(Account account, double amount) {
+        Map<String, AccountType> accountTypes = repository.getAllAccountTypes();
+        AccountType type = accountTypes.get(account.getAccountTypeID());
+
+        if (type != null && amount > type.getWithDrawLimit()) {
+            System.out.println("Error: Exceeds daily withdrawal limit of RM " + type.getWithDrawLimit());
+            return;
         }
-        else {
-            System.out.println("Insufficient Balance or invalid input");
+        
+        if (amount > 0 && account.getBalance() >= amount) {
+            account.withdraw(amount);
+            repository.updateBalance(account.getAccNo(), account.getBalance()); // Save to DB!
+            System.out.println("Withdraw Successful! New balance: RM " + account.getBalance());
+        } else {
+            System.out.println("Error: Insufficient balance or invalid input.");
         }
     }
 
-    public void deposit(Account account, double amount){
-        if (amount>0){
-            account.setBalance(account.getBalance() + amount);
-        }
-        else {
-            System.out.println("Invalid input");
+    public void deposit(Account account, double amount) {
+        if (amount > 0) {
+            account.deposit(amount);
+            repository.updateBalance(account.getAccNo(), account.getBalance()); // Save to DB!
+            System.out.println("Deposit Successful! New balance: RM " + account.getBalance());
+        } else {
+            System.out.println("Error: Invalid deposit amount.");
         }
     }
 }

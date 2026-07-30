@@ -1,69 +1,65 @@
 package org.example.assigment.aung.ATM;
+
 import java.util.Scanner;
 
 public class view {
-    private Service service;
+    private AccountController controller;
     private Scanner scanner;
-    private Account[] accounts;
-    boolean isRunning = true;
+    private boolean isRunning = true;
 
-    public view(Service service, Account[] accounts) {
-        this.service = service;
+    public view(AccountController controller) {
+        this.controller = controller;
         this.scanner = new Scanner(System.in);
-        this.accounts = accounts;
     }
 
-    public void mainmenu(){
-        System.out.println("===Welcome to the ATM Management System===\n");
+    public void mainmenu() {
+        System.out.println("=== Welcome to the ATM Management System ===\n");
         System.out.println("Enter your Bank No: ");
         String accNo = scanner.nextLine();
 
         System.out.println("Enter Pin: ");
         String pin = scanner.nextLine();
 
-        Account user = service.authenticate(accounts, accNo, pin);
+        Account user = controller.login(accNo, pin);
         if (user != null) {
-            System.out.println("Authentication Successful");
-            while(isRunning){
-                System.out.println("\n1.Withdraw Money");
+            System.out.println("\nAuthentication Successful! Welcome, " + user.getName() + "!");
+            while (isRunning) {
+                System.out.println("\n1. Withdraw Money");
                 System.out.println("2. Deposit Money");
                 System.out.println("3. Check Balance");
                 System.out.println("4. Exit");
                 System.out.println("===============");
+                System.out.print("Enter choice: ");
 
                 int choice = scanner.nextInt();
-                switch (choice){
+                switch (choice) {
                     case 1:
-                        System.out.println("Enter Amount to withdraw: ");
+                        System.out.print("Enter Amount to withdraw: ");
                         double withdrawal = scanner.nextDouble();
-                        service.withdraw(user, withdrawal);
+                        controller.withdraw(user, withdrawal);
                         break;
 
                     case 2:
-                        System.out.println("Enter Amount to deposit: ");
+                        System.out.print("Enter Amount to deposit: ");
                         double deposited = scanner.nextDouble();
-                        service.deposit(user, deposited);
+                        controller.deposit(user, deposited);
                         break;
 
                     case 3:
-                        System.out.println("Current Balance RM: "+ user.getBalance());
+                        System.out.println("Current Balance RM: " + user.getBalance());
                         break;
 
                     case 4:
-                        System.out.println("Exiting....");
+                        System.out.println("Exiting.... Thank you!");
                         isRunning = false;
                         break;
 
                     default:
-                        System.out.println("Invalid choice, Please try again");
+                        System.out.println("Invalid choice, Please try again.");
                 }
-
             }
-        }
-        else {
-            System.out.println("Authentication Failed");
+        } else {
+            System.out.println("Authentication Failed. Invalid Bank No or PIN.");
         }
     }
-
-
 }

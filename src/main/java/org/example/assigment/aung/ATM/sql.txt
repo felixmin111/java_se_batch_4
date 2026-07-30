@@ -1,0 +1,22 @@
+
+CREATE TABLE account_types (
+    id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    withdraw_limit NUMERIC(15, 2) NOT NULL
+);
+
+CREATE TABLE accounts (
+    acc_no VARCHAR(30) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    pin VARCHAR(20) NOT NULL,
+    balance NUMERIC(15, 2) NOT NULL,
+    account_type_id VARCHAR(20) REFERENCES account_types(id)
+);
+
+INSERT INTO account_types (id, name, withdraw_limit) VALUES 
+('TYPE01', 'Saving Account', 1000.00),
+('TYPE02', 'Business Account', 5000.00);
+INSERT INTO accounts (acc_no, name, pin, balance, account_type_id) VALUES 
+('1234', 'Aung Aung', '1234', 10000.00, 'TYPE01'),
+('5678', 'Mg Mg', '1234', 20000.00, 'TYPE02'),
+('1111', 'Aung San', '1234', 50000.00, 'TYPE01');
